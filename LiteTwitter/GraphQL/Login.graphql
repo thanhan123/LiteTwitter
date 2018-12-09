@@ -1,0 +1,13 @@
+query GetUser($username: String!, $password: String!) {
+    allUsers(filter: {
+             AND: [{
+                   username_in: [$username]
+                   }, {
+                   password_in: [$password]
+                   }]
+             })
+    {
+        id
+        username
+    }
+}

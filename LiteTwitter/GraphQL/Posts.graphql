@@ -1,0 +1,13 @@
+query AllPosts(){
+    allUsers(){
+        ...PostDetails
+    }
+}
+
+fragment PostDetails on Post {
+    id
+    author
+    title
+    content
+    updatedAt
+}
