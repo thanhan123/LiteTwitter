@@ -1,5 +1,5 @@
 //
-//  SaveCurrentUserLocalManager.swift
+//  SaveUserLocalManager.swift
 //  LiteTwitter
 //
 //  Created by Dinh Thanh An on 12/8/18.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol SaveCurrentUserLocalManager {
+protocol SaveUserLocalManager {
     func save(user: User, handler: @escaping (Result<Bool>) -> ())
 }
 
-class UserDefaultSaveCurrentUserLocalManager: SaveCurrentUserLocalManager {
+class UserDefaultSaveUserLocalManager: SaveUserLocalManager {
     
     func save(user: User, handler: @escaping (Result<Bool>) -> ()) {
-        UserDefaults.standard.set(user, forKey: "user")
+        UserDefaults.standard.set(user.toDictionary(), forKey: "user")
         handler(.success(true))
     }
 }

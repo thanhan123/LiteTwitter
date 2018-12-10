@@ -9,16 +9,16 @@
 import Foundation
 
 protocol LoginAction {
-    var saveUserLocalManager: SaveCurrentUserLocalManager { get set }
+    var saveUserLocalManager: SaveUserLocalManager { get set }
     var loginManager: LoginManager { get set }
     func login(with username: String, password: String, handler: @escaping (Result<Bool>) -> ())
 }
 
 class LoginActionProvider: LoginAction {
-    var saveUserLocalManager: SaveCurrentUserLocalManager
+    var saveUserLocalManager: SaveUserLocalManager
     var loginManager: LoginManager
     
-    init(saveUserLocalManager: SaveCurrentUserLocalManager,
+    init(saveUserLocalManager: SaveUserLocalManager,
          loginManager: LoginManager) {
         self.saveUserLocalManager = saveUserLocalManager
         self.loginManager = loginManager

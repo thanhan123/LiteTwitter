@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let getCurrentUser: GetCurrentUserLocalManager = UserDefaultGetCurrentUserLocalManager()
+    let getCurrentUser: GetUserLocalManager = UserDefaultGetUserLocalManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if window == nil {
@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         getCurrentUser.getCurrentUser { (result) in
             switch result {
             case .success:
-                break
+                self.showTimeLineScreen()
                 
             case .failed:
                 self.showLoginScreen()
@@ -34,23 +34,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showLoginScreen() {
-        let loginAction = LoginActionProvider()
-        let signUpAction = SignUpActionProvider(
-            signUpManager: ApolloSignUpManager(),
-            userLocalManager: UserDefaultSaveCurrentUserLocalManager()
-        )
-        let loginVC = LoginViewController(
-            loginAction: loginAction,
-            signUpAction: signUpAction
-        )
+        let loginCreator: LoginCreator = LoginCreatorProvider()
+        let loginVC = loginCreator.createLoginScreen(with: window)
         let navVC = UINavigationController(rootViewController: loginVC)
+        changeRootView(vc: navVC)
+    }
+    
+    func showTimeLineScreen() {
+        let timeLine: TimeLineCreator = TimeLineCreatorProvider()
+        let timeLineVC = timeLine.createTimeLineScreen(with: window)
+        let navVC = UINavigationController(rootViewController: timeLineVC)
         changeRootView(vc: navVC)
     }
     
     func changeRootView(vc: UIViewController) {
         window?.rootViewController = vc
     }
-
-
 }
 

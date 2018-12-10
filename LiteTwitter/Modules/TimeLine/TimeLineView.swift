@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc protocol TimeLineViewActionDelegate: AnyObject {
+@objc protocol TimeLineViewActionDelegate: class {
 }
 
 class TimeLineView: BaseView {
@@ -22,6 +22,9 @@ class TimeLineView: BaseView {
     
     override func setupView() {
         super.setupView()
+        
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
+        addSubview(tableView)
         
         tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true

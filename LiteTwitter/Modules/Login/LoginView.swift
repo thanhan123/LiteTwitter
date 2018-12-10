@@ -23,14 +23,14 @@ class LoginView: BaseView {
         return stack
     }()
     
-    private var userNameTextField: UITextField = {
+    var userNameTextField: UITextField = {
         let txtField = UITextField()
         txtField.textColor = .black
         txtField.placeholder = "User name"
         return txtField
     }()
     
-    private var passwordTextField: UITextField = {
+    var passwordTextField: UITextField = {
         let txtField = UITextField()
         txtField.textColor = .black
         txtField.placeholder = "Password"
@@ -52,12 +52,11 @@ class LoginView: BaseView {
         return button
     }()
     
-    private var signUpButton: UIButton = {
-        let button = UIButton()
-        button.setTitleColor(UIColor.blue, for: .normal)
-        button.setTitle("Sign Up", for: .normal)
-        button.addTarget(self, action: #selector(handleSignUpButtonWasTapped), for: .touchUpInside)
-        return button
+    private var segment: UISegmentedControl = {
+        let segment = UISegmentedControl(items: ["Login", "Sign Up"])
+        segment.selectedSegmentIndex = 0
+        segment.addTarget(self, action: #selector(handleSegmentWasTapped), for: .valueChanged)
+        return segment
     }()
     
     public weak var actionDelegate: LoginViewActionDelegate?
@@ -65,11 +64,11 @@ class LoginView: BaseView {
     override func setupView() {
         super.setupView()
         
+        stackView.addArrangedSubview(segment)
         stackView.addArrangedSubview(userNameTextField)
         stackView.addArrangedSubview(passwordTextField)
-//        stackView.addArrangedSubview(confirmPasswordTextField)
+        stackView.addArrangedSubview(confirmPasswordTextField)
         stackView.addArrangedSubview(confirmButton)
-//        stackView.addArrangedSubview(signUpButton)
         addSubview(stackView)
         
         confirmPasswordTextField.isHidden = true
@@ -83,7 +82,7 @@ class LoginView: BaseView {
         actionDelegate?.confirmButtonWasTapped()
     }
     
-    @objc func handleSignUpButtonWasTapped() {
-        confirmPasswordTextField.isHidden.toggle()
+    @objc func handleSegmentWasTapped() {
+        confirmPasswordTextField.isHidden = segment.selectedSegmentIndex == 0
     }
 }

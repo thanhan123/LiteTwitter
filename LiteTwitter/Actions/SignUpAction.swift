@@ -9,17 +9,17 @@
 import Foundation
 
 protocol SignUpAction {
-    var saveUserLocalManager: SaveCurrentUserLocalManager { get set }
+    var saveUserLocalManager: SaveUserLocalManager { get set }
     var signUpManager: SignUpManager { get set }
     func signUp(with username: String, password: String, handler: @escaping (Result<Bool>) -> ())
 }
 
 class SignUpActionProvider: SignUpAction {
     var signUpManager: SignUpManager
-    var saveUserLocalManager: SaveCurrentUserLocalManager
+    var saveUserLocalManager: SaveUserLocalManager
     
     init(signUpManager: SignUpManager,
-         userLocalManager: SaveCurrentUserLocalManager) {
+         userLocalManager: SaveUserLocalManager) {
         self.signUpManager = signUpManager
         self.saveUserLocalManager = userLocalManager
     }

@@ -9,11 +9,6 @@
 import Foundation
 import Apollo
 
-private struct UserResponse: User {
-    let id: String
-    let name: String
-}
-
 protocol LoginManager {
     func login(with username: String, password: String, onCompleted: ((Result<User>)->())?)
 }
