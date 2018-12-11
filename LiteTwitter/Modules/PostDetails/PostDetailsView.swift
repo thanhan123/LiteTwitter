@@ -34,7 +34,6 @@ class PostDetailsView: BaseView {
         let txtField = UITextField()
         txtField.textColor = .black
         txtField.placeholder = "Title"
-        txtField.addTarget(self, action: #selector(handleInputFieldChanged), for: .valueChanged)
         return txtField
     }()
     
@@ -55,10 +54,11 @@ class PostDetailsView: BaseView {
         stackView.addArrangedSubview(confirmButton)
         addSubview(stackView)
         
-        stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor).isActive = true
         
+        titleTextField.addTarget(self, action: #selector(handleInputFieldChanged), for: .allEditingEvents)
         contentTextView.delegate = self
     }
     

@@ -18,6 +18,7 @@ class PostTableViewCell: UITableViewCell {
     var contentLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12.0)
+        label.numberOfLines = 0
         return label
     }()
     
@@ -34,15 +35,17 @@ class PostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(contentLabel)
         contentView.addSubview(stackView)
         
-        stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8.0).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 8.0).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.0).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 16.0).isActive = true
+        let layoutsGuide = contentView.layoutMarginsGuide
+        
+        stackView.topAnchor.constraint(equalTo: layoutsGuide.topAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: layoutsGuide.bottomAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: layoutsGuide.leadingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: layoutsGuide.trailingAnchor).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
