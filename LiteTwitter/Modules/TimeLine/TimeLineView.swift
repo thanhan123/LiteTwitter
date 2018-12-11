@@ -15,6 +15,7 @@ class TimeLineView: BaseView {
     
     var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
@@ -23,12 +24,16 @@ class TimeLineView: BaseView {
     override func setupView() {
         super.setupView()
         
-        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
         addSubview(tableView)
         
-        tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0.0).isActive = true
+        tableView.topAnchor.constraint(equalTo: topAnchor, constant: 0.0).isActive = true
+        tableView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0.0).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0.0).isActive = true
+        
+        tableView.separatorStyle = .none
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100.0
     }
 }

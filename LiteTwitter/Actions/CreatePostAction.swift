@@ -9,11 +9,29 @@
 import Foundation
 
 protocol CreatePostAction {
-    func createPost(_ post: Post, handler: @escaping ((Result<Bool>) -> ()))
+    var createPostManager: CreatePostManager { get set }
+    func createPost(content: String, title: String, authorId: String, handler: @escaping ((Result<Bool>) -> ()))
 }
 
 class CreatePostActionProvider: CreatePostAction {
-    func createPost(_ post: Post, handler: @escaping ((Result<Bool>) -> ())) {
-        
+    var createPostManager: CreatePostManager
+    
+    init(createPostManager: CreatePostManager) {
+        self.createPostManager = createPostManager
+    }
+    
+    func createPost(content: String, title: String, authorId: String, handler: @escaping ((Result<Bool>) -> ())) {
+        createPostManager.createPost(
+            content: content,
+            title: title,
+            authorId: authorId) { (result) in
+                switch result {
+                case .success:
+                    handler(.success(true))
+                    
+                case let .failed(error):
+                    handler(.failed(error))
+                }
+        }
     }
 }

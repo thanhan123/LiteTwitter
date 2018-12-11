@@ -9,15 +9,15 @@
 import UIKit
 
 protocol PostDetailsCreator {
-    func createPostDetailsScreen(with window: UIWindow?, post: Post?) -> PostDetailsViewController
+    func createPostDetailsScreen(with window: UIWindow?, screenType: PostDetailsScreenType) -> PostDetailsViewController
 }
 
 class PostDetailsCreatorProvider: PostDetailsCreator {
-    func createPostDetailsScreen(with window: UIWindow?, post: Post?) -> PostDetailsViewController {
+    func createPostDetailsScreen(with window: UIWindow?, screenType: PostDetailsScreenType) -> PostDetailsViewController {
         let vc = PostDetailsViewController(
-            post: post,
-            updatePostAction: UpdatePostActionProvider(),
-            createPostAction: CreatePostActionProvider()
+            screenType: screenType,
+            updatePostAction: UpdatePostActionProvider(updatePostManager: UpdatePostManagerProvider()),
+            createPostAction: CreatePostActionProvider(createPostManager: CreatePostManagerProvider())
         )
         
         return vc

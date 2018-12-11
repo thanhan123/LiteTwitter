@@ -34,11 +34,13 @@ class PostDetailsView: BaseView {
         let txtField = UITextField()
         txtField.textColor = .black
         txtField.placeholder = "Title"
+        txtField.addTarget(self, action: #selector(handleInputFieldChanged), for: .valueChanged)
         return txtField
     }()
     
     var contentTextView: UITextView = {
         let txtView = UITextView()
+        txtView.isScrollEnabled = false
         txtView.textColor = .black
         return txtView
     }()
@@ -56,9 +58,24 @@ class PostDetailsView: BaseView {
         stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
         stackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
+        
+        contentTextView.delegate = self
     }
     
     @objc func handleConfirmButtonWasTapped() {
         actionDelegate?.actionButtonWasTapped()
+    }
+    
+    @objc func handleInputFieldChanged() {
+        confirmButton.isEnabled = contentTextView.text.count > 0 &&
+            titleTextField.text != nil &&
+            titleTextField.text!.count > 0
+    }
+}
+
+extension PostDetailsView: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        handleInputFieldChanged()
     }
 }

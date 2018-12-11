@@ -9,7 +9,13 @@
 import UIKit
 
 class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActionDelegate, UITableViewDelegate {
-    var dataSource: TableViewDataSource<Post>?
+    var dataSource: TableViewDataSource<Post>? {
+        didSet {
+            currentView.tableView.dataSource = dataSource
+            currentView.tableView.reloadData()
+        }
+    }
+    var userId: String!
     
     let getPostsAction: GetPostsAction
     let getCurrentUserAction: GetCurrentUserAction
@@ -34,7 +40,7 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
     
     enum State {
         case onReceiveError(Error)
-        case onReceiveUser(User)
+        case onReceiveUserId(String)
         case onReceivePosts([Post])
         case onReceiveSelectedPost(Post)
     }
@@ -44,23 +50,28 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         case let .onReceiveError(error):
             print(error)
             
-        case let .onReceiveUser(user):
-            getPostsAction.getPosts(for: user.id, handler: { (posts) in
-                
+        case let .onReceiveUserId(id):
+            userId = id
+            getPostsAction.getPosts(for: userId, handler: { [weak self] (posts) in
+                self?.handleState(state: .onReceivePosts(posts))
             })
             
         case let .onReceivePosts(posts):
             dataSource = TableViewDataSource(
                 models: posts,
-                reuseIdentifier: "reuseIdentifier",
+                reuseIdentifier: PostTableViewCell.identifier,
                 cellConfigurator: { (model, cell) in
-                    cell.textLabel?.text = model.title
-                    cell.detailTextLabel?.text = model.content
+                    if let cell = cell as? PostTableViewCell {
+                        cell.titleLabel.text = model.title
+                        cell.contentLabel.text = model.content
+                    }
             })
-            currentView.tableView.dataSource = dataSource
             
         case let .onReceiveSelectedPost(post):
-            let postDetailsVC = postDetailsCreator.createPostDetailsScreen(with: router.window, post: post)
+            let postDetailsVC = postDetailsCreator.createPostDetailsScreen(
+                with: router.window,
+                screenType: .edit(post)
+            )
             router.push(postDetailsVC, from: self, animated: true)
         }
     }
@@ -73,11 +84,19 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         getCurrentUserAction.getCurrentUser { [weak self] (result) in
             switch result {
             case let .success(user):
-                self?.handleState(state: .onReceiveUser(user))
+                self?.handleState(state: .onReceiveUserId(user.id))
                 
             case let .failed(error):
                 self?.handleState(state: .onReceiveError(error))
             }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let userId = userId {
+            handleState(state: .onReceiveUserId(userId))
         }
     }
     

@@ -20,8 +20,10 @@
 		25B9E55121BE734F00D9AA81 /* UpdatePostAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B9E55021BE734F00D9AA81 /* UpdatePostAction.swift */; };
 		25B9E55321BE736900D9AA81 /* CreatePostAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B9E55221BE736900D9AA81 /* CreatePostAction.swift */; };
 		25B9E55621BE7D0100D9AA81 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B9E55521BE7D0100D9AA81 /* User.swift */; };
-		25B9E55A21BE82A400D9AA81 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25B9E55921BE82A400D9AA81 /* PostTableViewCell.xib */; };
 		25B9E55C21BE82DA00D9AA81 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B9E55B21BE82DA00D9AA81 /* PostTableViewCell.swift */; };
+		25D96E2321BF6CAC005D852E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E2221BF6CAC005D852E /* API.swift */; };
+		25D96E2921BFBC6B005D852E /* UpdatePostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E2821BFBC6A005D852E /* UpdatePostManager.swift */; };
+		25D96E2B21BFC13C005D852E /* CreatePostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E2A21BFC13C005D852E /* CreatePostManager.swift */; };
 		5DBE566D373C68660AD85F1F /* Pods_LiteTwitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B143E7DBDE01AED57921EE1E /* Pods_LiteTwitterTests.framework */; };
 		7CF1D1C2AB9A3BBD4A215C84 /* Pods_LiteTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620DEA289BA280A61A1D4191 /* Pods_LiteTwitter.framework */; };
 		84B8D4E98319364E9148A03C /* Pods_LiteTwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B495465A74768CF947BD38ED /* Pods_LiteTwitterUITests.framework */; };
@@ -49,8 +51,6 @@
 		D13DE87921BB7B4000946ECA /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13DE87721BB7B4000946ECA /* Networking.swift */; };
 		D13DE87A21BB7B4000946ECA /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13DE87721BB7B4000946ECA /* Networking.swift */; };
 		D13DE87C21BB7B9800946ECA /* ApolloNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13DE87B21BB7B9800946ECA /* ApolloNetworking.swift */; };
-		D1AC660F21BBCA8400A74380 /* Register.graphql in Resources */ = {isa = PBXBuildFile; fileRef = D1AC660D21BBCA8400A74380 /* Register.graphql */; };
-		D1AC661221BBCAA000A74380 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AC661121BBCAA000A74380 /* API.swift */; };
 		D1E67E6B21BBDF6700EC6B1C /* SignUpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E67E6A21BBDF6700EC6B1C /* SignUpManager.swift */; };
 		D1E67E6D21BBDF9300EC6B1C /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E67E6C21BBDF9300EC6B1C /* CustomError.swift */; };
 		D1E67E7021BBF9C000EC6B1C /* SaveUserLocalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E67E6F21BBF9C000EC6B1C /* SaveUserLocalManager.swift */; };
@@ -58,8 +58,6 @@
 		D1E67E7521BC008200EC6B1C /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E67E7421BC008200EC6B1C /* TimeLineViewController.swift */; };
 		D1E67E7721BC00A000EC6B1C /* TimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E67E7621BC00A000EC6B1C /* TimeLineView.swift */; };
 		D1E67E7921BCE10600EC6B1C /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E67E7821BCE10600EC6B1C /* LoginManager.swift */; };
-		D1E67E7B21BCE1CE00EC6B1C /* Login.graphql in Resources */ = {isa = PBXBuildFile; fileRef = D1E67E7A21BCE1CE00EC6B1C /* Login.graphql */; };
-		D1E67E7F21BD20A800EC6B1C /* Posts.graphql in Resources */ = {isa = PBXBuildFile; fileRef = D1E67E7E21BD20A800EC6B1C /* Posts.graphql */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,8 +91,10 @@
 		25B9E55021BE734F00D9AA81 /* UpdatePostAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePostAction.swift; sourceTree = "<group>"; };
 		25B9E55221BE736900D9AA81 /* CreatePostAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostAction.swift; sourceTree = "<group>"; };
 		25B9E55521BE7D0100D9AA81 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		25B9E55921BE82A400D9AA81 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		25B9E55B21BE82DA00D9AA81 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		25D96E2221BF6CAC005D852E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		25D96E2821BFBC6A005D852E /* UpdatePostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePostManager.swift; sourceTree = "<group>"; };
+		25D96E2A21BFC13C005D852E /* CreatePostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostManager.swift; sourceTree = "<group>"; };
 		374583A0BA1598BB151BB9F0 /* Pods-LiteTwitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiteTwitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiteTwitter/Pods-LiteTwitter.release.xcconfig"; sourceTree = "<group>"; };
 		5772445FC1B637C41FF1F5EF /* Pods-LiteTwitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiteTwitterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiteTwitterUITests/Pods-LiteTwitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		620DEA289BA280A61A1D4191 /* Pods_LiteTwitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiteTwitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,8 +123,6 @@
 		D13DE87221BB6FD100946ECA /* SignUpAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAction.swift; sourceTree = "<group>"; };
 		D13DE87721BB7B4000946ECA /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		D13DE87B21BB7B9800946ECA /* ApolloNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApolloNetworking.swift; sourceTree = "<group>"; };
-		D1AC660D21BBCA8400A74380 /* Register.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Register.graphql; sourceTree = "<group>"; };
-		D1AC661121BBCAA000A74380 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = LiteTwitter/API.swift; sourceTree = SOURCE_ROOT; };
 		D1E67E6A21BBDF6700EC6B1C /* SignUpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpManager.swift; sourceTree = "<group>"; };
 		D1E67E6C21BBDF9300EC6B1C /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		D1E67E6F21BBF9C000EC6B1C /* SaveUserLocalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserLocalManager.swift; sourceTree = "<group>"; };
@@ -132,8 +130,6 @@
 		D1E67E7421BC008200EC6B1C /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		D1E67E7621BC00A000EC6B1C /* TimeLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineView.swift; sourceTree = "<group>"; };
 		D1E67E7821BCE10600EC6B1C /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
-		D1E67E7A21BCE1CE00EC6B1C /* Login.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Login.graphql; sourceTree = "<group>"; };
-		D1E67E7E21BD20A800EC6B1C /* Posts.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Posts.graphql; sourceTree = "<group>"; };
 		D6777C7BD22DF0DE54E20790 /* Pods-LiteTwitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiteTwitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiteTwitter/Pods-LiteTwitter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -364,10 +360,7 @@
 		D1AC660C21BBCA8400A74380 /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
-				D1AC661121BBCAA000A74380 /* API.swift */,
-				D1AC660D21BBCA8400A74380 /* Register.graphql */,
-				D1E67E7A21BCE1CE00EC6B1C /* Login.graphql */,
-				D1E67E7E21BD20A800EC6B1C /* Posts.graphql */,
+				25D96E2221BF6CAC005D852E /* API.swift */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -378,6 +371,8 @@
 				D1E67E6A21BBDF6700EC6B1C /* SignUpManager.swift */,
 				D1E67E7821BCE10600EC6B1C /* LoginManager.swift */,
 				258BE90921BE4AA400B87E29 /* GetPostsManager.swift */,
+				25D96E2821BFBC6A005D852E /* UpdatePostManager.swift */,
+				25D96E2A21BFC13C005D852E /* CreatePostManager.swift */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -396,7 +391,6 @@
 			children = (
 				D1E67E7421BC008200EC6B1C /* TimeLineViewController.swift */,
 				D1E67E7621BC00A000EC6B1C /* TimeLineView.swift */,
-				25B9E55921BE82A400D9AA81 /* PostTableViewCell.xib */,
 				25B9E55B21BE82DA00D9AA81 /* PostTableViewCell.swift */,
 			);
 			path = TimeLine;
@@ -410,7 +404,6 @@
 			buildConfigurationList = D13DE84F21BB660300946ECA /* Build configuration list for PBXNativeTarget "LiteTwitter" */;
 			buildPhases = (
 				A23657BCD19604AD3A5D9E16 /* [CP] Check Pods Manifest.lock */,
-				D1AC660921BBC31900A74380 /* GrapQL Apollo Codegen */,
 				D13DE82321BB660000946ECA /* Sources */,
 				D13DE82421BB660000946ECA /* Frameworks */,
 				D13DE82521BB660000946ECA /* Resources */,
@@ -517,11 +510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D13DE83521BB660200946ECA /* LaunchScreen.storyboard in Resources */,
-				D1AC660F21BBCA8400A74380 /* Register.graphql in Resources */,
-				D1E67E7F21BD20A800EC6B1C /* Posts.graphql in Resources */,
-				25B9E55A21BE82A400D9AA81 /* PostTableViewCell.xib in Resources */,
 				D13DE83221BB660200946ECA /* Assets.xcassets in Resources */,
-				D1E67E7B21BCE1CE00EC6B1C /* Login.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,24 +661,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D1AC660921BBC31900A74380 /* GrapQL Apollo Codegen */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "GrapQL Apollo Codegen";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "APOLLO_FRAMEWORK_PATH=\"$(eval find $FRAMEWORK_SEARCH_PATHS -name \"Apollo.framework\" -maxdepth 1)\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\necho \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\nexit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/check-and-run-apollo-cli.sh codegen:generate --queries=\"$(find . -name '*.graphql')\" --schema=schema.json API.swift\n";
-		};
 		E04A791EFDDF6FA3B8D16AAB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -751,6 +722,7 @@
 				D1E67E6B21BBDF6700EC6B1C /* SignUpManager.swift in Sources */,
 				258BE90521BE356700B87E29 /* LoginCreator.swift in Sources */,
 				D13DE82D21BB660000946ECA /* LoginViewController.swift in Sources */,
+				25D96E2B21BFC13C005D852E /* CreatePostManager.swift in Sources */,
 				25B9E54F21BE6A9700D9AA81 /* PostDetailsView.swift in Sources */,
 				258BE90821BE49CD00B87E29 /* TableViewDataSource.swift in Sources */,
 				D1E67E7721BC00A000EC6B1C /* TimeLineView.swift in Sources */,
@@ -762,9 +734,10 @@
 				D13DE86121BB6D0600946ECA /* BaseView.swift in Sources */,
 				D1E67E7521BC008200EC6B1C /* TimeLineViewController.swift in Sources */,
 				25B9E55C21BE82DA00D9AA81 /* PostTableViewCell.swift in Sources */,
-				D1AC661221BBCAA000A74380 /* API.swift in Sources */,
 				25B9E54621BE517400D9AA81 /* GetPostsAction.swift in Sources */,
 				D13DE86F21BB6FB800946ECA /* LoginAction.swift in Sources */,
+				25D96E2921BFBC6B005D852E /* UpdatePostManager.swift in Sources */,
+				25D96E2321BF6CAC005D852E /* API.swift in Sources */,
 				25B9E55321BE736900D9AA81 /* CreatePostAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,15 +8,20 @@
 
 import UIKit
 
+enum PostDetailsScreenType {
+    case edit(Post)
+    case createPost(author: String)
+}
+
 class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetailsViewActionDelegate {
-    let post: Post?
+    let screenType: PostDetailsScreenType
     let updatePostAction: UpdatePostAction
     let createPostAction: CreatePostAction
     
-    init(post: Post?,
+    init(screenType: PostDetailsScreenType,
          updatePostAction: UpdatePostAction,
          createPostAction: CreatePostAction) {
-        self.post = post
+        self.screenType = screenType
         self.updatePostAction = updatePostAction
         self.createPostAction = createPostAction
         
@@ -31,26 +36,55 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
         super.viewDidLoad()
         
         currentView.actionDelegate = self
+        setupUI()
     }
     
     func setupUI() {
-        currentView.contentTextView.text = post?.content
-        currentView.titleTextField.text = post?.title
-        if post != nil {
+        switch screenType {
+        case let .edit(post):
+            currentView.contentTextView.text = post.content
+            currentView.titleTextField.text = post.title
             currentView.confirmButton.setTitle("Edit post", for: .normal)
-        } else {
+            
+        case .createPost:
             currentView.confirmButton.setTitle("Create post", for: .normal)
         }
     }
     
     // MARK: PostDetailsViewActionDelegate
     func actionButtonWasTapped() {
-        if post != nil {
-            
-        } else {
-            
+        guard let title = currentView.titleTextField.text,
+            let content = currentView.contentTextView.text else {
+            return
         }
         
-        navigationController?.popViewController(animated: true)
+        let handler: ((Result<Bool>) -> ()) = { [weak self] result in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+                
+            case let .failed(error):
+                print(error)
+            }
+        }
+        switch screenType {
+        case let .edit(post):
+            let newPost = PostReponse(
+                id: post.id,
+                title: title,
+                content: content
+            )
+            updatePostAction.updatePost(newPost, handler: handler)
+            
+        case let .createPost(authorId):
+            createPostAction.createPost(
+                content: content,
+                title: title,
+                authorId: authorId,
+                handler: handler
+            )
+        }
     }
 }
