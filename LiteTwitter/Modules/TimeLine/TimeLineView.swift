@@ -44,14 +44,13 @@ class TimeLineView: BaseView {
         
         addSubview(tableView)
         
-        tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 100.0
     }
     
     @objc func addButtonWasTapped() {

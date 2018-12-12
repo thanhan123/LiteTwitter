@@ -71,10 +71,10 @@ class PostDetailsView: BaseView {
     override func setupView() {
         super.setupView()
         
-        stackView.addRow(titleLabel)
-        stackView.addRow(titleTextField)
-        stackView.addRow(contentLabel)
-        stackView.addRow(contentTextView)
+        let inputsStackView = UIStackView(arrangedSubviews: [titleLabel, titleTextField, contentLabel, contentTextView])
+        inputsStackView.axis = .vertical
+        inputsStackView.spacing = 5
+        stackView.addRow(inputsStackView)
         
         let buttonStackView = UIStackView(arrangedSubviews: [confirmButton])
         buttonStackView.axis = .vertical
@@ -116,3 +116,4 @@ extension PostDetailsView: UITextViewDelegate {
         handleInputFieldChanged()
     }
 }
+

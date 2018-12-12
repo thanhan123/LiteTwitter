@@ -9,13 +9,9 @@
 import UIKit
 
 class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActionDelegate, UITableViewDelegate {
-    var dataSource: TableViewDataSource<Post>? {
-        didSet {
-            currentView.tableView.dataSource = dataSource
-            currentView.tableView.reloadData()
-        }
-    }
+    var dataSource: TableViewDataSource<Post>?
     var userId: String?
+    var heights = [String: CGFloat]()
     
     let getPostsAction: GetPostsAction
     let getCurrentUserAction: GetCurrentUserAction
@@ -79,15 +75,24 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
             })
             
         case let .onReceivePosts(posts):
-            dataSource = TableViewDataSource(
-                models: posts,
-                reuseIdentifier: PostTableViewCell.identifier,
-                cellConfigurator: { (model, cell) in
-                    if let cell = cell as? PostTableViewCell {
-                        cell.titleLabel.text = model.title
-                        cell.contentLabel.text = model.content
-                    }
-            })
+            if dataSource == nil {
+                dataSource = TableViewDataSource(
+                    models: posts,
+                    reuseIdentifier: PostTableViewCell.identifier,
+                    cellConfigurator: { (model, cell) in
+                        if let cell = cell as? PostTableViewCell {
+                            cell.titleLabel.text = model.title
+                            cell.contentLabel.text = model.content
+                        }
+                })
+                currentView.tableView.dataSource = dataSource
+            } else {
+                dataSource?.models = posts
+            }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.currentView.tableView.reloadData()
+            }
             
         case let .onReceiveSelectedPost(post):
             let postDetailsVC = postDetailsCreator.createPostDetailsScreen(
@@ -161,6 +166,21 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         if let selectedPost = dataSource?.models[indexPath.row],
             selectedPost.authorId == userId {
             handleState(state: .onReceiveSelectedPost(selectedPost))
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let postId = dataSource?.models[indexPath.row].id,
+            let height = heights[postId] {
+            return height
+        }
+        
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let postId = dataSource?.models[indexPath.row].id {
+            heights[postId] = cell.frame.height
         }
     }
 }
