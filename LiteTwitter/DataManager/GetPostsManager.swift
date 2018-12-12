@@ -12,15 +12,21 @@ protocol Post {
     var id: String { get }
     var title: String { get }
     var content: String { get }
+    var authorId: String { get }
 }
 
 struct PostReponse: Post {
     let id: String
     let title: String
     let content: String
+    let authorId: String
 }
 
-extension PostDetails: Post {}
+extension PostDetails: Post {
+    var authorId: String {
+        return author.id
+    }
+}
 
 protocol GetPostsManager {
     func getPosts(for userId: String, handler: @escaping ((Result<[Post]>) -> ()) )

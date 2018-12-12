@@ -24,6 +24,12 @@
 		25D96E2321BF6CAC005D852E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E2221BF6CAC005D852E /* API.swift */; };
 		25D96E2921BFBC6B005D852E /* UpdatePostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E2821BFBC6A005D852E /* UpdatePostManager.swift */; };
 		25D96E2B21BFC13C005D852E /* CreatePostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E2A21BFC13C005D852E /* CreatePostManager.swift */; };
+		25D96E2D21C0BE22005D852E /* LogoutAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E2C21C0BE22005D852E /* LogoutAction.swift */; };
+		25D96E2F21C0BF7B005D852E /* DeleteUserLocalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E2E21C0BF7B005D852E /* DeleteUserLocalManager.swift */; };
+		25D96E3121C0E4B8005D852E /* DeletePostAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E3021C0E4B8005D852E /* DeletePostAction.swift */; };
+		25D96E3321C0E5AC005D852E /* DeletePostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E3221C0E5AC005D852E /* DeletePostManager.swift */; };
+		25D96E3521C0ECF4005D852E /* ShowAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E3421C0ECF4005D852E /* ShowAlertAction.swift */; };
+		25D96E3721C0F600005D852E /* ShowLoaderAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E3621C0F600005D852E /* ShowLoaderAction.swift */; };
 		5DBE566D373C68660AD85F1F /* Pods_LiteTwitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B143E7DBDE01AED57921EE1E /* Pods_LiteTwitterTests.framework */; };
 		7CF1D1C2AB9A3BBD4A215C84 /* Pods_LiteTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620DEA289BA280A61A1D4191 /* Pods_LiteTwitter.framework */; };
 		84B8D4E98319364E9148A03C /* Pods_LiteTwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B495465A74768CF947BD38ED /* Pods_LiteTwitterUITests.framework */; };
@@ -95,6 +101,12 @@
 		25D96E2221BF6CAC005D852E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		25D96E2821BFBC6A005D852E /* UpdatePostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePostManager.swift; sourceTree = "<group>"; };
 		25D96E2A21BFC13C005D852E /* CreatePostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostManager.swift; sourceTree = "<group>"; };
+		25D96E2C21C0BE22005D852E /* LogoutAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutAction.swift; sourceTree = "<group>"; };
+		25D96E2E21C0BF7B005D852E /* DeleteUserLocalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserLocalManager.swift; sourceTree = "<group>"; };
+		25D96E3021C0E4B8005D852E /* DeletePostAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePostAction.swift; sourceTree = "<group>"; };
+		25D96E3221C0E5AC005D852E /* DeletePostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePostManager.swift; sourceTree = "<group>"; };
+		25D96E3421C0ECF4005D852E /* ShowAlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertAction.swift; sourceTree = "<group>"; };
+		25D96E3621C0F600005D852E /* ShowLoaderAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLoaderAction.swift; sourceTree = "<group>"; };
 		374583A0BA1598BB151BB9F0 /* Pods-LiteTwitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiteTwitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiteTwitter/Pods-LiteTwitter.release.xcconfig"; sourceTree = "<group>"; };
 		5772445FC1B637C41FF1F5EF /* Pods-LiteTwitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiteTwitterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiteTwitterUITests/Pods-LiteTwitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		620DEA289BA280A61A1D4191 /* Pods_LiteTwitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiteTwitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -344,6 +356,10 @@
 				25B9E54721BE58A300D9AA81 /* GetCurrentUserAction.swift */,
 				25B9E55021BE734F00D9AA81 /* UpdatePostAction.swift */,
 				25B9E55221BE736900D9AA81 /* CreatePostAction.swift */,
+				25D96E2C21C0BE22005D852E /* LogoutAction.swift */,
+				25D96E3021C0E4B8005D852E /* DeletePostAction.swift */,
+				25D96E3421C0ECF4005D852E /* ShowAlertAction.swift */,
+				25D96E3621C0F600005D852E /* ShowLoaderAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -373,6 +389,7 @@
 				258BE90921BE4AA400B87E29 /* GetPostsManager.swift */,
 				25D96E2821BFBC6A005D852E /* UpdatePostManager.swift */,
 				25D96E2A21BFC13C005D852E /* CreatePostManager.swift */,
+				25D96E3221C0E5AC005D852E /* DeletePostManager.swift */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -382,6 +399,7 @@
 			children = (
 				D1E67E6F21BBF9C000EC6B1C /* SaveUserLocalManager.swift */,
 				D1E67E7121BBFE8100EC6B1C /* GetUserLocalManager.swift */,
+				25D96E2E21C0BF7B005D852E /* DeleteUserLocalManager.swift */,
 			);
 			path = LocalDataManager;
 			sourceTree = "<group>";
@@ -576,11 +594,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitter/Pods-LiteTwitter-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AloeStackView/AloeStackView.framework",
 				"${BUILT_PRODUCTS_DIR}/Apollo/Apollo.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AloeStackView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Apollo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -705,9 +729,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25D96E3321C0E5AC005D852E /* DeletePostManager.swift in Sources */,
 				25B9E55121BE734F00D9AA81 /* UpdatePostAction.swift in Sources */,
 				D13DE86A21BB6F9300946ECA /* Result.swift in Sources */,
 				D13DE87321BB6FD100946ECA /* SignUpAction.swift in Sources */,
+				25D96E3121C0E4B8005D852E /* DeletePostAction.swift in Sources */,
+				25D96E2F21C0BF7B005D852E /* DeleteUserLocalManager.swift in Sources */,
 				D1E67E7021BBF9C000EC6B1C /* SaveUserLocalManager.swift in Sources */,
 				25B9E55621BE7D0100D9AA81 /* User.swift in Sources */,
 				25B9E54A21BE5E4200D9AA81 /* PostDetailsCreator.swift in Sources */,
@@ -716,11 +743,13 @@
 				258BE90321BE354400B87E29 /* TimeLineCreator.swift in Sources */,
 				D1E67E6D21BBDF9300EC6B1C /* CustomError.swift in Sources */,
 				D1E67E7221BBFE8100EC6B1C /* GetUserLocalManager.swift in Sources */,
+				25D96E2D21C0BE22005D852E /* LogoutAction.swift in Sources */,
 				D1E67E7921BCE10600EC6B1C /* LoginManager.swift in Sources */,
 				258BE90021BE351100B87E29 /* Router.swift in Sources */,
 				D13DE87C21BB7B9800946ECA /* ApolloNetworking.swift in Sources */,
 				D1E67E6B21BBDF6700EC6B1C /* SignUpManager.swift in Sources */,
 				258BE90521BE356700B87E29 /* LoginCreator.swift in Sources */,
+				25D96E3521C0ECF4005D852E /* ShowAlertAction.swift in Sources */,
 				D13DE82D21BB660000946ECA /* LoginViewController.swift in Sources */,
 				25D96E2B21BFC13C005D852E /* CreatePostManager.swift in Sources */,
 				25B9E54F21BE6A9700D9AA81 /* PostDetailsView.swift in Sources */,
@@ -731,6 +760,7 @@
 				D13DE82B21BB660000946ECA /* AppDelegate.swift in Sources */,
 				D13DE86621BB6DAA00946ECA /* LoginView.swift in Sources */,
 				25B9E54D21BE5EAD00D9AA81 /* PostDetailsViewController.swift in Sources */,
+				25D96E3721C0F600005D852E /* ShowLoaderAction.swift in Sources */,
 				D13DE86121BB6D0600946ECA /* BaseView.swift in Sources */,
 				D1E67E7521BC008200EC6B1C /* TimeLineViewController.swift in Sources */,
 				25B9E55C21BE82DA00D9AA81 /* PostTableViewCell.swift in Sources */,

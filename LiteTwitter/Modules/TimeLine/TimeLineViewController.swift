@@ -15,21 +15,33 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
             currentView.tableView.reloadData()
         }
     }
-    var userId: String!
+    var userId: String?
     
     let getPostsAction: GetPostsAction
     let getCurrentUserAction: GetCurrentUserAction
+    let logoutAction: LogoutAction
+    let showLoaderAction: ShowLoaderAction
+    let showAlertAction: ShowAlertAction
     let router: Router
     let postDetailsCreator: PostDetailsCreator
+    let loginCreator: LoginCreator
     
     init(getPostsAction: GetPostsAction,
          getCurrentUserAction: GetCurrentUserAction,
+         logoutAction: LogoutAction,
          router: Router,
-         postDetailsCreator: PostDetailsCreator) {
+         postDetailsCreator: PostDetailsCreator,
+         loginCreator: LoginCreator,
+         showLoaderAction: ShowLoaderAction,
+         showAlertAction: ShowAlertAction) {
         self.getPostsAction = getPostsAction
         self.getCurrentUserAction = getCurrentUserAction
         self.router = router
         self.postDetailsCreator = postDetailsCreator
+        self.loginCreator = loginCreator
+        self.logoutAction = logoutAction
+        self.showLoaderAction = showLoaderAction
+        self.showAlertAction = showAlertAction
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -43,16 +55,26 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         case onReceiveUserId(String)
         case onReceivePosts([Post])
         case onReceiveSelectedPost(Post)
+        case onSuccessfullyLogout
     }
     
     func handleState(state: State) {
+        showLoaderAction.hide(in: currentView)
+        
         switch state {
         case let .onReceiveError(error):
-            print(error)
+            showAlertAction.show(
+                title: "Error",
+                message: "\(error)",
+                cancel: nil,
+                buttons: ["Ok"],
+                action: nil,
+                sender: self
+            )
             
         case let .onReceiveUserId(id):
             userId = id
-            getPostsAction.getPosts(for: userId, handler: { [weak self] (posts) in
+            getPostsAction.getPosts(for: userId!, handler: { [weak self] (posts) in
                 self?.handleState(state: .onReceivePosts(posts))
             })
             
@@ -73,14 +95,24 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
                 screenType: .edit(post)
             )
             router.push(postDetailsVC, from: self, animated: true)
+            
+        case .onSuccessfullyLogout:
+            let vc = loginCreator.createLoginScreen(with: router.window)
+            let navVC = UINavigationController(rootViewController: vc)
+            router.changeRootView(navVC)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Time Line"
+        navigationItem.leftBarButtonItem = currentView.logoutBarButton
+        navigationItem.rightBarButtonItem = currentView.addBarButton
         currentView.actionDelegate = self
         currentView.tableView.delegate = self
+        
+        showLoaderAction.show(in: currentView)
         getCurrentUserAction.getCurrentUser { [weak self] (result) in
             switch result {
             case let .success(user):
@@ -96,16 +128,38 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         super.viewDidAppear(animated)
         
         if let userId = userId {
+            showLoaderAction.show(in: currentView)
             handleState(state: .onReceiveUserId(userId))
         }
     }
     
     // MARK: TimeLineViewActionDelegate
-    //
+    func handleAddBarButtonWasTapped() {
+        if let userId = userId {
+            let postDetailsVC = postDetailsCreator.createPostDetailsScreen(
+                with: router.window,
+                screenType: .createPost(author: userId)
+            )
+            router.push(postDetailsVC, from: self, animated: true)
+        }
+    }
+    
+    func handleLogoutBarButtonWasTapped() {
+        self.logoutAction.logout { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.handleState(state: .onSuccessfullyLogout)
+                
+            case let .failed(error):
+                self?.handleState(state: .onReceiveError(error))
+            }
+        }
+    }
     
     // MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let selectedPost = dataSource?.models[indexPath.row] {
+        if let selectedPost = dataSource?.models[indexPath.row],
+            selectedPost.authorId == userId {
             handleState(state: .onReceiveSelectedPost(selectedPost))
         }
     }

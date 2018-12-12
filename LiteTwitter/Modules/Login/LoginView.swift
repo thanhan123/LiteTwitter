@@ -9,7 +9,7 @@
 import UIKit
 
 @objc protocol LoginViewActionDelegate: AnyObject {
-    func confirmButtonWasTapped()
+    func loginButtonWasTapped()
     func signUpButtonWasTapped()
 }
 
@@ -27,6 +27,7 @@ class LoginView: BaseView {
         let txtField = UITextField()
         txtField.textColor = .black
         txtField.placeholder = "User name"
+        txtField.borderStyle = .roundedRect
         return txtField
     }()
     
@@ -34,6 +35,8 @@ class LoginView: BaseView {
         let txtField = UITextField()
         txtField.textColor = .black
         txtField.placeholder = "Password"
+        txtField.isSecureTextEntry = true
+        txtField.borderStyle = .roundedRect
         return txtField
     }()
     
@@ -41,13 +44,15 @@ class LoginView: BaseView {
         let txtField = UITextField()
         txtField.textColor = .black
         txtField.placeholder = "Confirm Password"
+        txtField.isSecureTextEntry = true
+        txtField.borderStyle = .roundedRect
         return txtField
     }()
     
     private var confirmButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(UIColor.green, for: .normal)
-        button.setTitle("Confirm", for: .normal)
+        button.setTitle("Login", for: .normal)
         button.addTarget(self, action: #selector(handleConfirmButtonWasTapped), for: .touchUpInside)
         return button
     }()
@@ -73,16 +78,24 @@ class LoginView: BaseView {
         
         confirmPasswordTextField.isHidden = true
         
-        stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 30.0).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor).isActive = true
     }
     
     @objc func handleConfirmButtonWasTapped() {
-        actionDelegate?.confirmButtonWasTapped()
+        if segment.selectedSegmentIndex == 0 {
+            actionDelegate?.loginButtonWasTapped()
+        } else {
+            actionDelegate?.signUpButtonWasTapped()
+        }
     }
     
     @objc func handleSegmentWasTapped() {
         confirmPasswordTextField.isHidden = segment.selectedSegmentIndex == 0
+        confirmButton.setTitle(confirmPasswordTextField.isHidden ? "Login" : "Sign Up", for: .normal)
+        userNameTextField.text = nil
+        passwordTextField.text = nil
+        confirmPasswordTextField.text = nil
     }
 }

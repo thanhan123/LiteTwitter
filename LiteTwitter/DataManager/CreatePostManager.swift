@@ -12,7 +12,7 @@ protocol CreatePostManager {
     func createPost(content: String, title: String, authorId: String, handler: @escaping ((Result<Post>) -> ()))
 }
 
-class CreatePostManagerProvider: CreatePostManager {
+class ApolloCreatePostManager: CreatePostManager {
     let apollo = ApolloClient(url: URL(string: graphCoolURL)!)
     
     func createPost(content: String, title: String, authorId: String, handler: @escaping ((Result<Post>) -> ())) {

@@ -6,6 +6,9 @@ target 'LiteTwitter' do
   use_frameworks!
 
   pod 'Apollo', '0.9.1'
+  pod 'MBProgressHUD', '~> 1.1.0'
+  pod 'IQKeyboardManager'
+  pod 'AloeStackView'
 
   target 'LiteTwitterTests' do
     inherit! :search_paths

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,13 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.makeKeyAndVisible()
         }
         
-        getCurrentUser.getCurrentUser { (result) in
+        IQKeyboardManager.shared().isEnabled = true
+        
+        getCurrentUser.getCurrentUser { [weak self] (result) in
             switch result {
             case .success:
-                self.showTimeLineScreen()
+                self?.showTimeLineScreen()
                 
             case .failed:
-                self.showLoginScreen()
+                self?.showLoginScreen()
             }
         }
         

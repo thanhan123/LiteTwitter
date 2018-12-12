@@ -7,19 +7,25 @@
 //
 
 import UIKit
+import AloeStackView
 
 @objc protocol PostDetailsViewActionDelegate: class {
     func actionButtonWasTapped()
+    func deleteButtonWasTapped()
 }
 
 class PostDetailsView: BaseView {
     
-    private var stackView: UIStackView = {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .vertical
-        stack.spacing = 5.0
-        return stack
+    private var stackView: AloeStackView = {
+        let stackView = AloeStackView()
+        stackView.hidesSeparatorsByDefault = true
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    var deleteBarButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .trash, target: nil, action: nil)
+        return button
     }()
     
     var confirmButton: UIButton = {
@@ -30,17 +36,33 @@ class PostDetailsView: BaseView {
         return button
     }()
     
+    private var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Post title"
+        return label
+    }()
+    
     var titleTextField: UITextField = {
         let txtField = UITextField()
         txtField.textColor = .black
         txtField.placeholder = "Title"
+        txtField.borderStyle = .roundedRect
         return txtField
+    }()
+    
+    private var contentLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Post content"
+        return label
     }()
     
     var contentTextView: UITextView = {
         let txtView = UITextView()
-        txtView.isScrollEnabled = false
         txtView.textColor = .black
+        txtView.isScrollEnabled = false
+        txtView.layer.borderColor = UIColor.black.cgColor
+        txtView.layer.borderWidth = 0.2
+        txtView.layer.cornerRadius = 1
         return txtView
     }()
     
@@ -49,17 +71,32 @@ class PostDetailsView: BaseView {
     override func setupView() {
         super.setupView()
         
-        stackView.addArrangedSubview(titleTextField)
-        stackView.addArrangedSubview(contentTextView)
-        stackView.addArrangedSubview(confirmButton)
+        stackView.addRow(titleLabel)
+        stackView.addRow(titleTextField)
+        stackView.addRow(contentLabel)
+        stackView.addRow(contentTextView)
+        
+        let buttonStackView = UIStackView(arrangedSubviews: [confirmButton])
+        buttonStackView.axis = .vertical
+        buttonStackView.spacing = 5
+        buttonStackView.alignment = .center
+        stackView.addRow(buttonStackView)
+        
         addSubview(stackView)
         
-        stackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        stackView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         
+        deleteBarButton.target = self
+        deleteBarButton.action = #selector(handleDeleteButtonWasTapped)
         titleTextField.addTarget(self, action: #selector(handleInputFieldChanged), for: .allEditingEvents)
         contentTextView.delegate = self
+    }
+    
+    @objc func handleDeleteButtonWasTapped() {
+        actionDelegate?.deleteButtonWasTapped()
     }
     
     @objc func handleConfirmButtonWasTapped() {

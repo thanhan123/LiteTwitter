@@ -17,13 +17,46 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
     let screenType: PostDetailsScreenType
     let updatePostAction: UpdatePostAction
     let createPostAction: CreatePostAction
+    let deletePostAction: DeletePostAction
+    let showAlertAction: ShowAlertAction
+    let showLoaderAction: ShowLoaderAction
+    
+    lazy var actionHandler: ((Result<Bool>) -> ()) = { [weak self] result in
+        guard let self = self else {
+            return
+        }
+        
+        self.showLoaderAction.hide(in: self.currentView)
+        switch result {
+        case .success:
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
+            
+        case let .failed(error):
+            self.showAlertAction.show(
+                title: "Error",
+                message: "\(error)",
+                cancel: nil,
+                buttons: ["Ok"],
+                action: nil,
+                sender: self
+            )
+        }
+    }
     
     init(screenType: PostDetailsScreenType,
          updatePostAction: UpdatePostAction,
-         createPostAction: CreatePostAction) {
+         createPostAction: CreatePostAction,
+         deletePostAction: DeletePostAction,
+         showAlertAction: ShowAlertAction,
+         showLoaderAction: ShowLoaderAction) {
         self.screenType = screenType
         self.updatePostAction = updatePostAction
         self.createPostAction = createPostAction
+        self.deletePostAction = deletePostAction
+        self.showAlertAction = showAlertAction
+        self.showLoaderAction = showLoaderAction
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -44,10 +77,11 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
         case let .edit(post):
             currentView.contentTextView.text = post.content
             currentView.titleTextField.text = post.title
-            currentView.confirmButton.setTitle("Edit post", for: .normal)
+            title = "Edit post"
+            navigationItem.rightBarButtonItem = currentView.deleteBarButton
             
         case .createPost:
-            currentView.confirmButton.setTitle("Create post", for: .normal)
+            title = "Create post"
         }
     }
     
@@ -58,33 +92,50 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
             return
         }
         
-        let handler: ((Result<Bool>) -> ()) = { [weak self] result in
-            switch result {
-            case .success:
-                DispatchQueue.main.async {
-                    self?.navigationController?.popViewController(animated: true)
-                }
-                
-            case let .failed(error):
-                print(error)
-            }
-        }
+        showLoaderAction.show(in: currentView)
         switch screenType {
         case let .edit(post):
             let newPost = PostReponse(
                 id: post.id,
                 title: title,
-                content: content
+                content: content,
+                authorId: post.authorId
             )
-            updatePostAction.updatePost(newPost, handler: handler)
+            updatePostAction.updatePost(newPost, handler: actionHandler)
             
         case let .createPost(authorId):
             createPostAction.createPost(
                 content: content,
                 title: title,
                 authorId: authorId,
-                handler: handler
+                handler: actionHandler
             )
+        }
+    }
+    
+    func deleteButtonWasTapped() {
+        switch screenType {
+        case let .edit(post):
+            showAlertAction.show(
+                title: "Alert",
+                message: "Do you want to delete this post?",
+                cancel: "Cancel",
+                buttons: ["Ok"],
+                action: { [weak self] index in
+                    guard let self = self else {
+                        return
+                    }
+                    
+                    if index == 0 {
+                        self.showLoaderAction.show(in: self.currentView)
+                        self.deletePostAction.deletePost(id: post.id, handler: self.actionHandler)
+                    }
+                },
+                sender: self
+            )
+            
+        default:
+            break
         }
     }
 }

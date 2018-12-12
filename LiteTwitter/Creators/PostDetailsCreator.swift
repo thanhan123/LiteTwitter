@@ -16,8 +16,11 @@ class PostDetailsCreatorProvider: PostDetailsCreator {
     func createPostDetailsScreen(with window: UIWindow?, screenType: PostDetailsScreenType) -> PostDetailsViewController {
         let vc = PostDetailsViewController(
             screenType: screenType,
-            updatePostAction: UpdatePostActionProvider(updatePostManager: UpdatePostManagerProvider()),
-            createPostAction: CreatePostActionProvider(createPostManager: CreatePostManagerProvider())
+            updatePostAction: UpdatePostActionProvider(updatePostManager: ApolloUpdatePostManager()),
+            createPostAction: CreatePostActionProvider(createPostManager: ApolloCreatePostManager()),
+            deletePostAction: DeletePostActionProvider(deletePostManager: ApolloDeletePostManager()),
+            showAlertAction: ShowAlertActionProvider(),
+            showLoaderAction: MBProgressHUDShowLoaderAction()
         )
         
         return vc

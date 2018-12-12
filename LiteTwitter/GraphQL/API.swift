@@ -186,7 +186,7 @@ public final class RegisterUserMutation: GraphQLMutation {
 
 public final class AllPostsQuery: GraphQLQuery {
     public let operationDefinition =
-    "query AllPosts {\n  allPosts {\n    __typename\n    ...PostDetails\n  }\n}"
+    "query AllPosts {\n  allPosts(orderBy: updatedAt_DESC) {\n    __typename\n    ...PostDetails\n  }\n}"
     
     public var queryDocument: String { return operationDefinition.appending(PostDetails.fragmentDefinition) }
     
@@ -197,7 +197,7 @@ public final class AllPostsQuery: GraphQLQuery {
         public static let possibleTypes = ["Query"]
         
         public static let selections: [GraphQLSelection] = [
-            GraphQLField("allPosts", type: .nonNull(.list(.nonNull(.object(AllPost.selections))))),
+            GraphQLField("allPosts", arguments: ["orderBy": "updatedAt_DESC"], type: .nonNull(.list(.nonNull(.object(AllPost.selections))))),
             ]
         
         public private(set) var resultMap: ResultMap
@@ -461,6 +461,85 @@ public final class UpdatePostMutation: GraphQLMutation {
                     set {
                         resultMap += newValue.resultMap
                     }
+                }
+            }
+        }
+    }
+}
+
+public final class DeletePostMutation: GraphQLMutation {
+    public let operationDefinition =
+    "mutation DeletePost($id: ID!) {\n  deletePost(id: $id) {\n    __typename\n    id\n  }\n}"
+    
+    public var id: GraphQLID
+    
+    public init(id: GraphQLID) {
+        self.id = id
+    }
+    
+    public var variables: GraphQLMap? {
+        return ["id": id]
+    }
+    
+    public struct Data: GraphQLSelectionSet {
+        public static let possibleTypes = ["Mutation"]
+        
+        public static let selections: [GraphQLSelection] = [
+            GraphQLField("deletePost", arguments: ["id": GraphQLVariable("id")], type: .object(DeletePost.selections)),
+            ]
+        
+        public private(set) var resultMap: ResultMap
+        
+        public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+        }
+        
+        public init(deletePost: DeletePost? = nil) {
+            self.init(unsafeResultMap: ["__typename": "Mutation", "deletePost": deletePost.flatMap { (value: DeletePost) -> ResultMap in value.resultMap }])
+        }
+        
+        public var deletePost: DeletePost? {
+            get {
+                return (resultMap["deletePost"] as? ResultMap).flatMap { DeletePost(unsafeResultMap: $0) }
+            }
+            set {
+                resultMap.updateValue(newValue?.resultMap, forKey: "deletePost")
+            }
+        }
+        
+        public struct DeletePost: GraphQLSelectionSet {
+            public static let possibleTypes = ["Post"]
+            
+            public static let selections: [GraphQLSelection] = [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+                ]
+            
+            public private(set) var resultMap: ResultMap
+            
+            public init(unsafeResultMap: ResultMap) {
+                self.resultMap = unsafeResultMap
+            }
+            
+            public init(id: GraphQLID) {
+                self.init(unsafeResultMap: ["__typename": "Post", "id": id])
+            }
+            
+            public var __typename: String {
+                get {
+                    return resultMap["__typename"]! as! String
+                }
+                set {
+                    resultMap.updateValue(newValue, forKey: "__typename")
+                }
+            }
+            
+            public var id: GraphQLID {
+                get {
+                    return resultMap["id"]! as! GraphQLID
+                }
+                set {
+                    resultMap.updateValue(newValue, forKey: "id")
                 }
             }
         }

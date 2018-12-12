@@ -12,7 +12,7 @@ protocol UpdatePostManager {
     func updatePost(_ post: Post, handler: @escaping ((Result<Post>) -> ()))
 }
 
-class UpdatePostManagerProvider: UpdatePostManager {
+class ApolloUpdatePostManager: UpdatePostManager {
     let apollo = ApolloClient(url: URL(string: graphCoolURL)!)
     
     func updatePost(_ post: Post, handler: @escaping ((Result<Post>) -> ())) {

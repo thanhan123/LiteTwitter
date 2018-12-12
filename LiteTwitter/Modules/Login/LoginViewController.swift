@@ -10,19 +10,48 @@ import UIKit
 
 class LoginViewController: BaseViewController<LoginView>, LoginViewActionDelegate {
 
-    let loginActionDelegate: LoginAction
-    let signUpActionDelegate: SignUpAction
+    let loginAction: LoginAction
+    let signUpAction: SignUpAction
+    let showLoaderAction: ShowLoaderAction
+    let showAlertAction: ShowAlertAction
     let timeLineCreator: TimeLineCreator
-    var router: Router
+    let router: Router
+    
+    lazy var actionHandler: (Result<Bool>) -> () = { [weak self] (result) in
+        guard let self = self else {
+            return
+        }
+        
+        self.showLoaderAction.hide(in: self.currentView)
+        switch result {
+        case let .failed(error):
+            self.showAlertAction.show(
+                title: "Error",
+                message: "\(error)",
+                cancel: nil,
+                buttons: ["Ok"],
+                action: nil,
+                sender: self)
+            
+        case .success:
+            let vc = self.timeLineCreator.createTimeLineScreen(with: self.router.window)
+            let navVC = UINavigationController(rootViewController: vc)
+            self.router.changeRootView(navVC)
+        }
+    }
     
     init(loginAction: LoginAction,
          signUpAction: SignUpAction,
          timeLineCreator: TimeLineCreator,
-         router: Router) {
-        loginActionDelegate = loginAction
-        signUpActionDelegate = signUpAction
+         router: Router,
+         showLoaderAction: ShowLoaderAction,
+         showAlertAction: ShowAlertAction) {
+        self.loginAction = loginAction
+        self.signUpAction = signUpAction
         self.timeLineCreator = timeLineCreator
         self.router = router
+        self.showLoaderAction = showLoaderAction
+        self.showAlertAction = showAlertAction
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -34,31 +63,19 @@ class LoginViewController: BaseViewController<LoginView>, LoginViewActionDelegat
     // MARK: Func - Override
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Login"
         currentView.actionDelegate = self
     }
     
     // MARK: Func - LoginViewActionDelegate
-    func confirmButtonWasTapped() {
+    func loginButtonWasTapped() {
         guard let username = currentView.userNameTextField.text,
             let password = currentView.passwordTextField.text else {
             return
         }
         
-        loginActionDelegate.login(with: username, password: password) { [weak self] (result) in
-            guard let self = self else {
-                return
-            }
-            
-            switch result {
-            case let .failed(error):
-                print(error)
-                
-            case .success:
-                let vc = self.timeLineCreator.createTimeLineScreen(with: self.router.window)
-                let navVC = UINavigationController(rootViewController: vc)
-                self.router.changeRootView(navVC)
-            }
-        }
+        showLoaderAction.show(in: currentView)
+        loginAction.login(with: username, password: password, handler: actionHandler)
     }
     
     func signUpButtonWasTapped() {
@@ -67,20 +84,6 @@ class LoginViewController: BaseViewController<LoginView>, LoginViewActionDelegat
                 return
         }
         
-        signUpActionDelegate.signUp(with: username, password: password) { [weak self] (result) in
-            guard let self = self else {
-                return
-            }
-            
-            switch result {
-            case let .failed(error):
-                print(error)
-                
-            case .success:
-                let vc = self.timeLineCreator.createTimeLineScreen(with: self.router.window)
-                let navVC = UINavigationController(rootViewController: vc)
-                self.router.changeRootView(navVC)
-            }
-        }
+        signUpAction.signUp(with: username, password: password, handler: actionHandler)
     }
 }

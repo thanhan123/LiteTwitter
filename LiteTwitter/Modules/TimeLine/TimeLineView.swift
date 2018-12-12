@@ -9,6 +9,8 @@
 import UIKit
 
 @objc protocol TimeLineViewActionDelegate: class {
+    func handleAddBarButtonWasTapped()
+    func handleLogoutBarButtonWasTapped()
 }
 
 class TimeLineView: BaseView {
@@ -19,21 +21,44 @@ class TimeLineView: BaseView {
         return tableView
     }()
     
+    var addBarButton: UIBarButtonItem = {
+        let barButton = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+        return barButton
+    }()
+    
+    var logoutBarButton: UIBarButtonItem = {
+        let barButton = UIBarButtonItem(title: "Logout", style: .plain, target: nil, action: nil)
+        return barButton
+    }()
+    
     public var actionDelegate: TimeLineViewActionDelegate?
     
     override func setupView() {
         super.setupView()
         
+        addBarButton.target = self
+        addBarButton.action = #selector(addButtonWasTapped)
+        
+        logoutBarButton.target = self
+        logoutBarButton.action = #selector(logoutButtonWasTapped)
+        
         addSubview(tableView)
         
-        tableView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0.0).isActive = true
-        tableView.topAnchor.constraint(equalTo: topAnchor, constant: 0.0).isActive = true
-        tableView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0.0).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0.0).isActive = true
+        tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
-        tableView.separatorStyle = .none
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100.0
+    }
+    
+    @objc func addButtonWasTapped() {
+        actionDelegate?.handleAddBarButtonWasTapped()
+    }
+    
+    @objc func logoutButtonWasTapped() {
+        actionDelegate?.handleLogoutBarButtonWasTapped()
     }
 }
