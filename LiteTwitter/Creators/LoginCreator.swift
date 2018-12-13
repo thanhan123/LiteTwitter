@@ -28,7 +28,8 @@ class LoginCreatorProvider: LoginCreator {
             timeLineCreator: TimeLineCreatorProvider(),
             router: RouterProvider(window: window),
             showLoaderAction: MBProgressHUDShowLoaderAction(),
-            showAlertAction: ShowAlertActionProvider()
+            showAlertAction: ShowAlertActionProvider(),
+            validationFieldAction: ValidationFieldActionProvider()
         )
         
         return loginVC

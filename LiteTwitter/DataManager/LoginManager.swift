@@ -26,8 +26,10 @@ class ApolloLoginManager: LoginManager {
                     onCompleted?(.success(UserResponse(id: user.id, name: user.username)))
                 } else if let error = error {
                     onCompleted?(.failed(error))
+                } else if let error = result?.errors?.first {
+                    onCompleted?(.failed(error))
                 } else {
-                    onCompleted?(.failed(CustomError.noResponse))
+                    onCompleted?(.failed(CustomError.userNameOrPasswordWrong))
                 }
         }
     }

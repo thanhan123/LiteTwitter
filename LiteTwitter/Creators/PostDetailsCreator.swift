@@ -20,7 +20,8 @@ class PostDetailsCreatorProvider: PostDetailsCreator {
             createPostAction: CreatePostActionProvider(createPostManager: ApolloCreatePostManager()),
             deletePostAction: DeletePostActionProvider(deletePostManager: ApolloDeletePostManager()),
             showAlertAction: ShowAlertActionProvider(),
-            showLoaderAction: MBProgressHUDShowLoaderAction()
+            showLoaderAction: MBProgressHUDShowLoaderAction(),
+            validationFieldAction: ValidationFieldActionProvider()
         )
         
         return vc

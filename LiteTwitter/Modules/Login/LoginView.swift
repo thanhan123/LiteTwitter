@@ -9,8 +9,8 @@
 import UIKit
 
 @objc protocol LoginViewActionDelegate: AnyObject {
-    func loginButtonWasTapped()
-    func signUpButtonWasTapped()
+    func actionButtonWasTapped()
+    func handleSegmentWasTapped(selectedIndex: Int)
 }
 
 class LoginView: BaseView {
@@ -65,6 +65,15 @@ class LoginView: BaseView {
     }()
     
     public weak var actionDelegate: LoginViewActionDelegate?
+    public var username: String? {
+        return userNameTextField.text
+    }
+    public var password: String? {
+        return passwordTextField.text
+    }
+    public var confirmPassword: String? {
+        return confirmPasswordTextField.text
+    }
     
     override func setupView() {
         super.setupView()
@@ -84,18 +93,23 @@ class LoginView: BaseView {
     }
     
     @objc func handleConfirmButtonWasTapped() {
-        if segment.selectedSegmentIndex == 0 {
-            actionDelegate?.loginButtonWasTapped()
-        } else {
-            actionDelegate?.signUpButtonWasTapped()
-        }
+        actionDelegate?.actionButtonWasTapped()
     }
     
     @objc func handleSegmentWasTapped() {
-        confirmPasswordTextField.isHidden = segment.selectedSegmentIndex == 0
-        confirmButton.setTitle(confirmPasswordTextField.isHidden ? "Login" : "Sign Up", for: .normal)
         userNameTextField.text = nil
         passwordTextField.text = nil
         confirmPasswordTextField.text = nil
+        actionDelegate?.handleSegmentWasTapped(selectedIndex: segment.selectedSegmentIndex)
+    }
+    
+    func updateUIForLoginAction() {
+        confirmPasswordTextField.isHidden = true
+        confirmButton.setTitle("Login", for: .normal)
+    }
+    
+    func updateUIForSignUpAction() {
+        confirmPasswordTextField.isHidden = false
+        confirmButton.setTitle("Sign Up", for: .normal)
     }
 }

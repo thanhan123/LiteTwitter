@@ -20,6 +20,7 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
     let deletePostAction: DeletePostAction
     let showAlertAction: ShowAlertAction
     let showLoaderAction: ShowLoaderAction
+    let validationFieldAction: ValidationFieldAction
     
     lazy var actionHandler: ((Result<Bool>) -> ()) = { [weak self] result in
         guard let self = self else {
@@ -50,13 +51,15 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
          createPostAction: CreatePostAction,
          deletePostAction: DeletePostAction,
          showAlertAction: ShowAlertAction,
-         showLoaderAction: ShowLoaderAction) {
+         showLoaderAction: ShowLoaderAction,
+         validationFieldAction: ValidationFieldAction) {
         self.screenType = screenType
         self.updatePostAction = updatePostAction
         self.createPostAction = createPostAction
         self.deletePostAction = deletePostAction
         self.showAlertAction = showAlertAction
         self.showLoaderAction = showLoaderAction
+        self.validationFieldAction = validationFieldAction
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -75,8 +78,8 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
     func setupUI() {
         switch screenType {
         case let .edit(post):
-            currentView.contentTextView.text = post.content
-            currentView.titleTextField.text = post.title
+            currentView.updateContent(post.content)
+            currentView.updateTitle(post.title)
             title = "Edit post"
             navigationItem.rightBarButtonItem = currentView.deleteBarButton
             
@@ -87,10 +90,11 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
     
     // MARK: PostDetailsViewActionDelegate
     func actionButtonWasTapped() {
-        guard let title = currentView.titleTextField.text,
-            let content = currentView.contentTextView.text else {
+        guard let title = currentView.titleString else {
             return
         }
+        
+        let content = currentView.contentString
         
         showLoaderAction.show(in: currentView)
         switch screenType {
@@ -137,5 +141,11 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
         default:
             break
         }
+    }
+    
+    func handleInputFieldChanged() {
+        let isInputValid = validationFieldAction.validate(string: currentView.titleString, type: .require) == .passed &&
+        validationFieldAction.validate(string: currentView.contentString, type: .require) == .passed
+        currentView.updateConfirmButton(isEnabled: isInputValid)
     }
 }

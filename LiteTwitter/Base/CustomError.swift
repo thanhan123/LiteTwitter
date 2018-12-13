@@ -11,4 +11,20 @@ import Foundation
 enum CustomError: Error {
     case noResponse
     case noObject
+    case userNameOrPasswordWrong
+}
+
+extension CustomError: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .noResponse:
+            return "There is no reponse"
+            
+        case .noObject:
+            return "There is no reponse"
+            
+        case .userNameOrPasswordWrong:
+            return "Username or password was wrong"
+        }
+    }
 }

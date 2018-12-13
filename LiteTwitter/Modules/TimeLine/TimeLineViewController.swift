@@ -46,7 +46,7 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         fatalError("init(coder:) has not been implemented")
     }
     
-    enum State {
+    enum Event {
         case onReceiveError(Error)
         case onReceiveUserId(String)
         case onReceivePosts([Post])
@@ -54,10 +54,10 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         case onSuccessfullyLogout
     }
     
-    func handleState(state: State) {
+    func handleEvent(event: Event) {
         showLoaderAction.hide(in: currentView)
         
-        switch state {
+        switch event {
         case let .onReceiveError(error):
             showAlertAction.show(
                 title: "Error",
@@ -71,7 +71,7 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         case let .onReceiveUserId(id):
             userId = id
             getPostsAction.getPosts(for: userId!, handler: { [weak self] (posts) in
-                self?.handleState(state: .onReceivePosts(posts))
+                self?.handleEvent(event: .onReceivePosts(posts))
             })
             
         case let .onReceivePosts(posts):
@@ -121,10 +121,10 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         getCurrentUserAction.getCurrentUser { [weak self] (result) in
             switch result {
             case let .success(user):
-                self?.handleState(state: .onReceiveUserId(user.id))
+                self?.handleEvent(event: .onReceiveUserId(user.id))
                 
             case let .failed(error):
-                self?.handleState(state: .onReceiveError(error))
+                self?.handleEvent(event: .onReceiveError(error))
             }
         }
     }
@@ -134,7 +134,7 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         
         if let userId = userId {
             showLoaderAction.show(in: currentView)
-            handleState(state: .onReceiveUserId(userId))
+            handleEvent(event: .onReceiveUserId(userId))
         }
     }
     
@@ -153,10 +153,10 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         self.logoutAction.logout { [weak self] (result) in
             switch result {
             case .success:
-                self?.handleState(state: .onSuccessfullyLogout)
+                self?.handleEvent(event: .onSuccessfullyLogout)
                 
             case let .failed(error):
-                self?.handleState(state: .onReceiveError(error))
+                self?.handleEvent(event: .onReceiveError(error))
             }
         }
     }
@@ -165,7 +165,7 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let selectedPost = dataSource?.models[indexPath.row],
             selectedPost.authorId == userId {
-            handleState(state: .onReceiveSelectedPost(selectedPost))
+            handleEvent(event: .onReceiveSelectedPost(selectedPost))
         }
     }
     

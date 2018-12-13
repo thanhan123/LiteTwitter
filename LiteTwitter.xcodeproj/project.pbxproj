@@ -30,6 +30,7 @@
 		25D96E3321C0E5AC005D852E /* DeletePostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E3221C0E5AC005D852E /* DeletePostManager.swift */; };
 		25D96E3521C0ECF4005D852E /* ShowAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E3421C0ECF4005D852E /* ShowAlertAction.swift */; };
 		25D96E3721C0F600005D852E /* ShowLoaderAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E3621C0F600005D852E /* ShowLoaderAction.swift */; };
+		25D96E3921C26BB0005D852E /* ValidationFieldAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E3821C26BB0005D852E /* ValidationFieldAction.swift */; };
 		5DBE566D373C68660AD85F1F /* Pods_LiteTwitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B143E7DBDE01AED57921EE1E /* Pods_LiteTwitterTests.framework */; };
 		7CF1D1C2AB9A3BBD4A215C84 /* Pods_LiteTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620DEA289BA280A61A1D4191 /* Pods_LiteTwitter.framework */; };
 		84B8D4E98319364E9148A03C /* Pods_LiteTwitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B495465A74768CF947BD38ED /* Pods_LiteTwitterUITests.framework */; };
@@ -107,6 +108,7 @@
 		25D96E3221C0E5AC005D852E /* DeletePostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePostManager.swift; sourceTree = "<group>"; };
 		25D96E3421C0ECF4005D852E /* ShowAlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertAction.swift; sourceTree = "<group>"; };
 		25D96E3621C0F600005D852E /* ShowLoaderAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLoaderAction.swift; sourceTree = "<group>"; };
+		25D96E3821C26BB0005D852E /* ValidationFieldAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationFieldAction.swift; sourceTree = "<group>"; };
 		374583A0BA1598BB151BB9F0 /* Pods-LiteTwitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiteTwitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiteTwitter/Pods-LiteTwitter.release.xcconfig"; sourceTree = "<group>"; };
 		5772445FC1B637C41FF1F5EF /* Pods-LiteTwitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiteTwitterUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiteTwitterUITests/Pods-LiteTwitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		620DEA289BA280A61A1D4191 /* Pods_LiteTwitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiteTwitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -360,6 +362,7 @@
 				25D96E3021C0E4B8005D852E /* DeletePostAction.swift */,
 				25D96E3421C0ECF4005D852E /* ShowAlertAction.swift */,
 				25D96E3621C0F600005D852E /* ShowLoaderAction.swift */,
+				25D96E3821C26BB0005D852E /* ValidationFieldAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				D13DE82421BB660000946ECA /* Frameworks */,
 				D13DE82521BB660000946ECA /* Resources */,
 				1E952F36453381C92A845BCD /* [CP] Embed Pods Frameworks */,
+				FBB6B48BE925EB4F97061202 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -444,6 +448,8 @@
 				D13DE83721BB660300946ECA /* Sources */,
 				D13DE83821BB660300946ECA /* Frameworks */,
 				D13DE83921BB660300946ECA /* Resources */,
+				BC5C78A10936C9048F8D8EFB /* [CP] Embed Pods Frameworks */,
+				20CBE69A8F9C66D6AE0F097C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -463,6 +469,8 @@
 				D13DE84221BB660300946ECA /* Sources */,
 				D13DE84321BB660300946ECA /* Frameworks */,
 				D13DE84421BB660300946ECA /* Resources */,
+				B3B14CC9441B75EA59D59FCF /* [CP] Embed Pods Frameworks */,
+				D7C4B1C58EEED0AA09DA1FC1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -568,6 +576,25 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitter/Pods-LiteTwitter-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		20CBE69A8F9C66D6AE0F097C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitterTests/Pods-LiteTwitterTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A23657BCD19604AD3A5D9E16 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -584,6 +611,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3B14CC9441B75EA59D59FCF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitterUITests/Pods-LiteTwitterUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B7FC8EC70B41B99FA5A9E7C8 /* [CP] Check Pods Manifest.lock */ = {
@@ -604,6 +650,44 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BC5C78A10936C9048F8D8EFB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitterTests/Pods-LiteTwitterTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7C4B1C58EEED0AA09DA1FC1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitterUITests/Pods-LiteTwitterUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		EA0A9D0CA988ED13F2A62687 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -620,6 +704,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FBB6B48BE925EB4F97061202 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitter/Pods-LiteTwitter-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -642,6 +745,7 @@
 				25B9E54821BE58A300D9AA81 /* GetCurrentUserAction.swift in Sources */,
 				258BE90321BE354400B87E29 /* TimeLineCreator.swift in Sources */,
 				D1E67E6D21BBDF9300EC6B1C /* CustomError.swift in Sources */,
+				25D96E3921C26BB0005D852E /* ValidationFieldAction.swift in Sources */,
 				D1E67E7221BBFE8100EC6B1C /* GetUserLocalManager.swift in Sources */,
 				25D96E2D21C0BE22005D852E /* LogoutAction.swift in Sources */,
 				D1E67E7921BCE10600EC6B1C /* LoginManager.swift in Sources */,

@@ -5,7 +5,7 @@ target 'LiteTwitter' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'Apollo', '0.9.1'
+  pod 'Apollo'
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'IQKeyboardManager'
   pod 'AloeStackView'

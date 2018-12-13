@@ -12,6 +12,7 @@ import AloeStackView
 @objc protocol PostDetailsViewActionDelegate: class {
     func actionButtonWasTapped()
     func deleteButtonWasTapped()
+    func handleInputFieldChanged()
 }
 
 class PostDetailsView: BaseView {
@@ -67,6 +68,12 @@ class PostDetailsView: BaseView {
     }()
     
     public var actionDelegate: PostDetailsViewActionDelegate?
+    public var titleString: String? {
+        return titleTextField.text
+    }
+    public var contentString: String {
+        return contentTextView.text
+    }
     
     override func setupView() {
         super.setupView()
@@ -104,16 +111,26 @@ class PostDetailsView: BaseView {
     }
     
     @objc func handleInputFieldChanged() {
-        confirmButton.isEnabled = contentTextView.text.count > 0 &&
-            titleTextField.text != nil &&
-            titleTextField.text!.count > 0
+        actionDelegate?.handleInputFieldChanged()
+    }
+    
+    func updateConfirmButton(isEnabled: Bool) {
+        confirmButton.isEnabled = isEnabled
+    }
+    
+    func updateTitle(_ title: String) {
+        titleTextField.text = title
+    }
+    
+    func updateContent(_ content: String) {
+        contentTextView.text = content
     }
 }
 
 extension PostDetailsView: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
-        handleInputFieldChanged()
+        actionDelegate?.handleInputFieldChanged()
     }
 }
 
