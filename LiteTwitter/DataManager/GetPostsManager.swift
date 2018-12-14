@@ -9,14 +9,14 @@
 import Apollo
 
 protocol GetPostsManager {
-    func getPosts(for userId: String, handler: @escaping ((Result<[Post]>) -> ()) )
+    func getPosts(handler: @escaping ((Result<[Post]>) -> ()) )
 }
 
 class ApolloGetPostsManager: GetPostsManager {
     
     let apollo = ApolloClient(url: URL(string: graphCoolURL)!)
     
-    func getPosts(for userId: String, handler: @escaping ((Result<[Post]>) -> ())) {
+    func getPosts(handler: @escaping ((Result<[Post]>) -> ())) {
         apollo.fetch(
             query: AllPostsQuery(),
             cachePolicy: .fetchIgnoringCacheData,

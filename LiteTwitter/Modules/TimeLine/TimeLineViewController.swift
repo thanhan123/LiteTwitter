@@ -70,7 +70,7 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
             
         case let .onReceiveUserId(id):
             userId = id
-            getPostsAction.getPosts(for: userId!, handler: { [weak self] (posts) in
+            getPostsAction.getPosts(handler: { [weak self] (posts) in
                 self?.handleEvent(event: .onReceivePosts(posts))
             })
             

@@ -10,7 +10,7 @@ import Foundation
 
 protocol GetPostsAction {
     var getPostsManager: GetPostsManager { get set }
-    func getPosts(for userId: String, handler: @escaping (([Post]) -> ()))
+    func getPosts(handler: @escaping (([Post]) -> ()))
 }
 
 class GetPostsActionProvider: GetPostsAction {
@@ -20,8 +20,8 @@ class GetPostsActionProvider: GetPostsAction {
         self.getPostsManager = getPostsManager
     }
     
-    func getPosts(for userId: String, handler: @escaping (([Post]) -> ())) {
-        getPostsManager.getPosts(for: userId) { (result) in
+    func getPosts(handler: @escaping (([Post]) -> ())) {
+        getPostsManager.getPosts { (result) in
             switch result {
             case let .success(posts):
                 handler(posts)
