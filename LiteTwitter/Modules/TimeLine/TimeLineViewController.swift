@@ -79,10 +79,11 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
                 dataSource = TableViewDataSource(
                     models: posts,
                     reuseIdentifier: PostTableViewCell.identifier,
-                    cellConfigurator: { (model, cell) in
+                    cellConfigurator: { [weak self] (model, cell) in
                         if let cell = cell as? PostTableViewCell {
                             cell.titleLabel.text = model.title
                             cell.contentLabel.text = model.content
+                            cell.editIncon.isHidden = model.authorId != self?.userId
                         }
                 })
                 currentView.tableView.dataSource = dataSource
@@ -91,13 +92,15 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
             }
             
             DispatchQueue.main.async { [weak self] in
+                self?.currentView.finsishLoading()
                 self?.currentView.tableView.reloadData()
             }
             
         case let .onReceiveSelectedPost(post):
             let postDetailsVC = postDetailsCreator.createPostDetailsScreen(
                 with: router.window,
-                screenType: .edit(post)
+                screenType: .edit(post),
+                delegate: self
             )
             router.push(postDetailsVC, from: self, animated: true)
             
@@ -108,6 +111,7 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         }
     }
     
+    // MARK: Func - override
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -129,21 +133,13 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let userId = userId {
-            showLoaderAction.show(in: currentView)
-            handleEvent(event: .onReceiveUserId(userId))
-        }
-    }
-    
     // MARK: TimeLineViewActionDelegate
     func handleAddBarButtonWasTapped() {
         if let userId = userId {
             let postDetailsVC = postDetailsCreator.createPostDetailsScreen(
                 with: router.window,
-                screenType: .createPost(author: userId)
+                screenType: .createPost(author: userId),
+                delegate: self
             )
             router.push(postDetailsVC, from: self, animated: true)
         }
@@ -159,6 +155,10 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
                 self?.handleEvent(event: .onReceiveError(error))
             }
         }
+    }
+    
+    func refreshControlWasTriggered() {
+        didUpdatePost()
     }
     
     // MARK: UITableViewDelegate
@@ -181,6 +181,15 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let postId = dataSource?.models[indexPath.row].id {
             heights[postId] = cell.frame.height
+        }
+    }
+}
+
+extension TimeLineViewController: PostDetailsViewDelegate {
+    func didUpdatePost() {
+        if let userId = userId {
+            showLoaderAction.show(in: currentView)
+            handleEvent(event: .onReceiveUserId(userId))
         }
     }
 }

@@ -31,8 +31,9 @@ class PostDetailsView: BaseView {
     
     var confirmButton: UIButton = {
         let button = UIButton()
-        button.setTitleColor(UIColor.green, for: .normal)
         button.setTitle("Confirm", for: .normal)
+        button.backgroundColor = UIColor.lightBlue
+        button.widthAnchor.constraint(equalToConstant: button.intrinsicContentSize.width + 100.0).isActive = true
         button.addTarget(self, action: #selector(handleConfirmButtonWasTapped), for: .touchUpInside)
         return button
     }()

@@ -9,6 +9,7 @@ target 'LiteTwitter' do
   pod 'MBProgressHUD', '~> 1.1.0'
   pod 'IQKeyboardManager'
   pod 'AloeStackView'
+  pod 'SwiftKeychainWrapper'
 
   target 'LiteTwitterTests' do
     inherit! :search_paths

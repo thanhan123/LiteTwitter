@@ -13,6 +13,10 @@ enum PostDetailsScreenType {
     case createPost(author: String)
 }
 
+protocol PostDetailsViewDelegate: class {
+    func didUpdatePost()
+}
+
 class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetailsViewActionDelegate {
     let screenType: PostDetailsScreenType
     let updatePostAction: UpdatePostAction
@@ -21,6 +25,7 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
     let showAlertAction: ShowAlertAction
     let showLoaderAction: ShowLoaderAction
     let validationFieldAction: ValidationFieldAction
+    weak var delegate: PostDetailsViewDelegate?
     
     lazy var actionHandler: ((Result<Bool>) -> ()) = { [weak self] result in
         guard let self = self else {
@@ -30,9 +35,7 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
         self.showLoaderAction.hide(in: self.currentView)
         switch result {
         case .success:
-            DispatchQueue.main.async {
-                self.navigationController?.popViewController(animated: true)
-            }
+            self.delegate?.didUpdatePost()
             
         case let .failed(error):
             self.showAlertAction.show(
@@ -52,7 +55,8 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
          deletePostAction: DeletePostAction,
          showAlertAction: ShowAlertAction,
          showLoaderAction: ShowLoaderAction,
-         validationFieldAction: ValidationFieldAction) {
+         validationFieldAction: ValidationFieldAction,
+         delegate: PostDetailsViewDelegate?) {
         self.screenType = screenType
         self.updatePostAction = updatePostAction
         self.createPostAction = createPostAction
@@ -60,6 +64,7 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
         self.showAlertAction = showAlertAction
         self.showLoaderAction = showLoaderAction
         self.validationFieldAction = validationFieldAction
+        self.delegate = delegate
         
         super.init(nibName: nil, bundle: nil)
     }

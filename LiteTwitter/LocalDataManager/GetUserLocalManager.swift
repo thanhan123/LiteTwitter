@@ -7,19 +7,21 @@
 //
 
 import Foundation
+import SwiftKeychainWrapper
 
 protocol GetUserLocalManager {
     func getCurrentUser(handler: @escaping (Result<User>) -> ())
 }
 
-class UserDefaultGetUserLocalManager: GetUserLocalManager {
+class KeyChainGetUserLocalManager: GetUserLocalManager {
     func getCurrentUser(handler: @escaping (Result<User>) -> ()) {
-        if let user = UserDefaults.standard.object(forKey: "user") as? [String: Any],
-            let name = user["name"] as? String,
-            let id = user["id"] as? String {
+        if let userData = KeychainWrapper.standard.data(forKey: "user"),
+            let user = try? JSONDecoder().decode([String: String].self, from: userData),
+            let name = user["name"],
+            let id = user["id"] {
             handler(.success(UserResponse(
                 id: id,
-                name: name))
+                username: name))
             )
         } else {
             handler(.failed(CustomError.noObject))

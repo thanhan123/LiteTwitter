@@ -9,11 +9,15 @@
 import UIKit
 
 protocol PostDetailsCreator {
-    func createPostDetailsScreen(with window: UIWindow?, screenType: PostDetailsScreenType) -> PostDetailsViewController
+    func createPostDetailsScreen(with window: UIWindow?,
+                                 screenType: PostDetailsScreenType,
+                                 delegate: PostDetailsViewDelegate?) -> PostDetailsViewController
 }
 
 class PostDetailsCreatorProvider: PostDetailsCreator {
-    func createPostDetailsScreen(with window: UIWindow?, screenType: PostDetailsScreenType) -> PostDetailsViewController {
+    func createPostDetailsScreen(with window: UIWindow?,
+                                 screenType: PostDetailsScreenType,
+                                 delegate: PostDetailsViewDelegate?) -> PostDetailsViewController {
         let vc = PostDetailsViewController(
             screenType: screenType,
             updatePostAction: UpdatePostActionProvider(updatePostManager: ApolloUpdatePostManager()),
@@ -21,7 +25,8 @@ class PostDetailsCreatorProvider: PostDetailsCreator {
             deletePostAction: DeletePostActionProvider(deletePostManager: ApolloDeletePostManager()),
             showAlertAction: ShowAlertActionProvider(),
             showLoaderAction: MBProgressHUDShowLoaderAction(),
-            validationFieldAction: ValidationFieldActionProvider()
+            validationFieldAction: ValidationFieldActionProvider(),
+            delegate: delegate
         )
         
         return vc

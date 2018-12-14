@@ -10,19 +10,21 @@ import Foundation
 
 protocol User {
     var id: String { get }
-    var name: String { get }
+    var username: String { get }
 }
 
 extension User {
     func toDictionary() -> [String: Any] {
         return [
             "id": id,
-            "name": name
+            "name": username
         ]
     }
 }
 
 struct UserResponse: User {
     let id: String
-    let name: String
+    let username: String
 }
+
+extension UserDetails: User { }

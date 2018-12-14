@@ -8,12 +8,19 @@
 
 import UIKit
 
-@objc protocol TimeLineViewActionDelegate: class {
+protocol TimeLineViewActionDelegate: class {
     func handleAddBarButtonWasTapped()
     func handleLogoutBarButtonWasTapped()
+    func refreshControlWasTriggered()
 }
 
 class TimeLineView: BaseView {
+    
+    var refreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        control.addTarget(self, action: #selector(refreshControlWasTriggered), for: .valueChanged)
+        return control
+    }()
     
     var tableView: UITableView = {
         let tableView = UITableView()
@@ -51,6 +58,7 @@ class TimeLineView: BaseView {
         
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.addSubview(refreshControl)
     }
     
     @objc func addButtonWasTapped() {
@@ -59,5 +67,15 @@ class TimeLineView: BaseView {
     
     @objc func logoutButtonWasTapped() {
         actionDelegate?.handleLogoutBarButtonWasTapped()
+    }
+    
+    @objc func refreshControlWasTriggered() {
+        actionDelegate?.refreshControlWasTriggered()
+    }
+    
+    func finsishLoading() {
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
     }
 }

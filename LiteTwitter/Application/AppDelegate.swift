@@ -13,7 +13,7 @@ import IQKeyboardManager
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let getCurrentUser: GetUserLocalManager = UserDefaultGetUserLocalManager()
+    let getCurrentUser: GetUserLocalManager = KeyChainGetUserLocalManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if window == nil {

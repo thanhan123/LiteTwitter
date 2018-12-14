@@ -16,8 +16,8 @@ class TimeLineCreatorProvider: TimeLineCreator {
     func createTimeLineScreen(with window: UIWindow?) -> TimeLineViewController {
         let vc = TimeLineViewController(
             getPostsAction: GetPostsActionProvider(getPostsManager: ApolloGetPostsManager()),
-            getCurrentUserAction: GetCurrentUserActionProvider(getCurrentLocalUser: UserDefaultGetUserLocalManager()),
-            logoutAction: LogoutActionProvider(deleteUserLocalManager: UserDefaultDeleteUserLocalManager()),
+            getCurrentUserAction: GetCurrentUserActionProvider(getCurrentLocalUser: KeyChainGetUserLocalManager()),
+            logoutAction: LogoutActionProvider(deleteUserLocalManager: KeyChainDeleteUserLocalManager()),
             router: RouterProvider(window: window),
             postDetailsCreator: PostDetailsCreatorProvider(),
             loginCreator: LoginCreatorProvider(),

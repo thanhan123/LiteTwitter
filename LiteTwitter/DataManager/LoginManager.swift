@@ -22,8 +22,8 @@ class ApolloLoginManager: LoginManager {
             query: GetUserQuery(username: username, password: password),
             cachePolicy: .fetchIgnoringCacheData,
             queue: DispatchQueue.main) { (result, error) in
-                if let user = result?.data?.allUsers.first {
-                    onCompleted?(.success(UserResponse(id: user.id, name: user.username)))
+                if let user = result?.data?.allUsers.first?.fragments.userDetails {
+                    onCompleted?(.success(user))
                 } else if let error = error {
                     onCompleted?(.failed(error))
                 } else if let error = result?.errors?.first {

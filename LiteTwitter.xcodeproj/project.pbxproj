@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2548D70621C3542B0055D9D2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548D70521C3542B0055D9D2 /* UIColor+Extension.swift */; };
+		2548D70821C362300055D9D2 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548D70721C362300055D9D2 /* Post.swift */; };
+		2548D70A21C365F70055D9D2 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548D70921C365F70055D9D2 /* UITableView+Extension.swift */; };
 		258BE90021BE351100B87E29 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258BE8FF21BE351100B87E29 /* Router.swift */; };
 		258BE90321BE354400B87E29 /* TimeLineCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258BE90221BE354400B87E29 /* TimeLineCreator.swift */; };
 		258BE90521BE356700B87E29 /* LoginCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258BE90421BE356700B87E29 /* LoginCreator.swift */; };
@@ -21,7 +24,7 @@
 		25B9E55321BE736900D9AA81 /* CreatePostAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B9E55221BE736900D9AA81 /* CreatePostAction.swift */; };
 		25B9E55621BE7D0100D9AA81 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B9E55521BE7D0100D9AA81 /* User.swift */; };
 		25B9E55C21BE82DA00D9AA81 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B9E55B21BE82DA00D9AA81 /* PostTableViewCell.swift */; };
-		25D96E2321BF6CAC005D852E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E2221BF6CAC005D852E /* API.swift */; };
+		25D96E2321BF6CAC005D852E /* GraphQLAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E2221BF6CAC005D852E /* GraphQLAPI.swift */; };
 		25D96E2921BFBC6B005D852E /* UpdatePostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E2821BFBC6A005D852E /* UpdatePostManager.swift */; };
 		25D96E2B21BFC13C005D852E /* CreatePostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E2A21BFC13C005D852E /* CreatePostManager.swift */; };
 		25D96E2D21C0BE22005D852E /* LogoutAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D96E2C21C0BE22005D852E /* LogoutAction.swift */; };
@@ -85,6 +88,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2548D70521C3542B0055D9D2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		2548D70721C362300055D9D2 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		2548D70921C365F70055D9D2 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		258BE8FF21BE351100B87E29 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		258BE90221BE354400B87E29 /* TimeLineCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCreator.swift; sourceTree = "<group>"; };
 		258BE90421BE356700B87E29 /* LoginCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCreator.swift; sourceTree = "<group>"; };
@@ -99,7 +105,7 @@
 		25B9E55221BE736900D9AA81 /* CreatePostAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostAction.swift; sourceTree = "<group>"; };
 		25B9E55521BE7D0100D9AA81 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		25B9E55B21BE82DA00D9AA81 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-		25D96E2221BF6CAC005D852E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		25D96E2221BF6CAC005D852E /* GraphQLAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphQLAPI.swift; sourceTree = "<group>"; };
 		25D96E2821BFBC6A005D852E /* UpdatePostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePostManager.swift; sourceTree = "<group>"; };
 		25D96E2A21BFC13C005D852E /* CreatePostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostManager.swift; sourceTree = "<group>"; };
 		25D96E2C21C0BE22005D852E /* LogoutAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutAction.swift; sourceTree = "<group>"; };
@@ -175,6 +181,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2548D70421C354150055D9D2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2548D70521C3542B0055D9D2 /* UIColor+Extension.swift */,
+				2548D70921C365F70055D9D2 /* UITableView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		258BE8FE21BE34F300B87E29 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				25B9E55521BE7D0100D9AA81 /* User.swift */,
+				2548D70721C362300055D9D2 /* Post.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -266,6 +282,7 @@
 		D13DE82921BB660000946ECA /* LiteTwitter */ = {
 			isa = PBXGroup;
 			children = (
+				2548D70421C354150055D9D2 /* Extensions */,
 				25B9E55421BE7CC300D9AA81 /* Models */,
 				258BE90621BE49B200B87E29 /* TableViewDataSource */,
 				258BE90121BE352B00B87E29 /* Creators */,
@@ -379,7 +396,7 @@
 		D1AC660C21BBCA8400A74380 /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
-				25D96E2221BF6CAC005D852E /* API.swift */,
+				25D96E2221BF6CAC005D852E /* GraphQLAPI.swift */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -563,6 +580,7 @@
 				"${BUILT_PRODUCTS_DIR}/Apollo/Apollo.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -570,6 +588,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Apollo.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -738,10 +757,12 @@
 				D13DE87321BB6FD100946ECA /* SignUpAction.swift in Sources */,
 				25D96E3121C0E4B8005D852E /* DeletePostAction.swift in Sources */,
 				25D96E2F21C0BF7B005D852E /* DeleteUserLocalManager.swift in Sources */,
+				2548D70821C362300055D9D2 /* Post.swift in Sources */,
 				D1E67E7021BBF9C000EC6B1C /* SaveUserLocalManager.swift in Sources */,
 				25B9E55621BE7D0100D9AA81 /* User.swift in Sources */,
 				25B9E54A21BE5E4200D9AA81 /* PostDetailsCreator.swift in Sources */,
 				258BE90A21BE4AA400B87E29 /* GetPostsManager.swift in Sources */,
+				2548D70A21C365F70055D9D2 /* UITableView+Extension.swift in Sources */,
 				25B9E54821BE58A300D9AA81 /* GetCurrentUserAction.swift in Sources */,
 				258BE90321BE354400B87E29 /* TimeLineCreator.swift in Sources */,
 				D1E67E6D21BBDF9300EC6B1C /* CustomError.swift in Sources */,
@@ -753,6 +774,7 @@
 				D13DE87C21BB7B9800946ECA /* ApolloNetworking.swift in Sources */,
 				D1E67E6B21BBDF6700EC6B1C /* SignUpManager.swift in Sources */,
 				258BE90521BE356700B87E29 /* LoginCreator.swift in Sources */,
+				2548D70621C3542B0055D9D2 /* UIColor+Extension.swift in Sources */,
 				25D96E3521C0ECF4005D852E /* ShowAlertAction.swift in Sources */,
 				D13DE82D21BB660000946ECA /* LoginViewController.swift in Sources */,
 				25D96E2B21BFC13C005D852E /* CreatePostManager.swift in Sources */,
@@ -771,7 +793,7 @@
 				25B9E54621BE517400D9AA81 /* GetPostsAction.swift in Sources */,
 				D13DE86F21BB6FB800946ECA /* LoginAction.swift in Sources */,
 				25D96E2921BFBC6B005D852E /* UpdatePostManager.swift in Sources */,
-				25D96E2321BF6CAC005D852E /* API.swift in Sources */,
+				25D96E2321BF6CAC005D852E /* GraphQLAPI.swift in Sources */,
 				25B9E55321BE736900D9AA81 /* CreatePostAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

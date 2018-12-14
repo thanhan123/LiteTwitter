@@ -4,7 +4,9 @@ import Apollo
 
 public final class GetUserQuery: GraphQLQuery {
     public let operationDefinition =
-    "query GetUser($username: String!, $password: String!) {\n  allUsers(filter: {AND: [{username_in: [$username]}, {password_in: [$password]}]}) {\n    __typename\n    id\n    username\n  }\n}"
+    "query GetUser($username: String!, $password: String!) {\n  allUsers(filter: {AND: [{username_in: [$username]}, {password_in: [$password]}]}) {\n    __typename\n    ...UserDetails\n  }\n}"
+    
+    public var queryDocument: String { return operationDefinition.appending(UserDetails.fragmentDefinition) }
     
     public var username: String
     public var password: String
@@ -49,8 +51,7 @@ public final class GetUserQuery: GraphQLQuery {
             
             public static let selections: [GraphQLSelection] = [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
-                GraphQLField("username", type: .nonNull(.scalar(String.self))),
+                GraphQLFragmentSpread(UserDetails.self),
                 ]
             
             public private(set) var resultMap: ResultMap
@@ -72,21 +73,29 @@ public final class GetUserQuery: GraphQLQuery {
                 }
             }
             
-            public var id: GraphQLID {
+            public var fragments: Fragments {
                 get {
-                    return resultMap["id"]! as! GraphQLID
+                    return Fragments(unsafeResultMap: resultMap)
                 }
                 set {
-                    resultMap.updateValue(newValue, forKey: "id")
+                    resultMap += newValue.resultMap
                 }
             }
             
-            public var username: String {
-                get {
-                    return resultMap["username"]! as! String
+            public struct Fragments {
+                public private(set) var resultMap: ResultMap
+                
+                public init(unsafeResultMap: ResultMap) {
+                    self.resultMap = unsafeResultMap
                 }
-                set {
-                    resultMap.updateValue(newValue, forKey: "username")
+                
+                public var userDetails: UserDetails {
+                    get {
+                        return UserDetails(unsafeResultMap: resultMap)
+                    }
+                    set {
+                        resultMap += newValue.resultMap
+                    }
                 }
             }
         }
@@ -95,7 +104,9 @@ public final class GetUserQuery: GraphQLQuery {
 
 public final class RegisterUserMutation: GraphQLMutation {
     public let operationDefinition =
-    "mutation RegisterUser($username: String!, $password: String!) {\n  createUser(username: $username, name: $username, password: $password) {\n    __typename\n    id\n    username\n  }\n}"
+    "mutation RegisterUser($username: String!, $password: String!) {\n  createUser(username: $username, name: $username, password: $password) {\n    __typename\n    ...UserDetails\n  }\n}"
+    
+    public var queryDocument: String { return operationDefinition.appending(UserDetails.fragmentDefinition) }
     
     public var username: String
     public var password: String
@@ -140,8 +151,7 @@ public final class RegisterUserMutation: GraphQLMutation {
             
             public static let selections: [GraphQLSelection] = [
                 GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
-                GraphQLField("username", type: .nonNull(.scalar(String.self))),
+                GraphQLFragmentSpread(UserDetails.self),
                 ]
             
             public private(set) var resultMap: ResultMap
@@ -163,21 +173,29 @@ public final class RegisterUserMutation: GraphQLMutation {
                 }
             }
             
-            public var id: GraphQLID {
+            public var fragments: Fragments {
                 get {
-                    return resultMap["id"]! as! GraphQLID
+                    return Fragments(unsafeResultMap: resultMap)
                 }
                 set {
-                    resultMap.updateValue(newValue, forKey: "id")
+                    resultMap += newValue.resultMap
                 }
             }
             
-            public var username: String {
-                get {
-                    return resultMap["username"]! as! String
+            public struct Fragments {
+                public private(set) var resultMap: ResultMap
+                
+                public init(unsafeResultMap: ResultMap) {
+                    self.resultMap = unsafeResultMap
                 }
-                set {
-                    resultMap.updateValue(newValue, forKey: "username")
+                
+                public var userDetails: UserDetails {
+                    get {
+                        return UserDetails(unsafeResultMap: resultMap)
+                    }
+                    set {
+                        resultMap += newValue.resultMap
+                    }
                 }
             }
         }
@@ -542,6 +560,56 @@ public final class DeletePostMutation: GraphQLMutation {
                     resultMap.updateValue(newValue, forKey: "id")
                 }
             }
+        }
+    }
+}
+
+public struct UserDetails: GraphQLFragment {
+    public static let fragmentDefinition =
+    "fragment UserDetails on User {\n  __typename\n  id\n  username\n}"
+    
+    public static let possibleTypes = ["User"]
+    
+    public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("username", type: .nonNull(.scalar(String.self))),
+        ]
+    
+    public private(set) var resultMap: ResultMap
+    
+    public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+    }
+    
+    public init(id: GraphQLID, username: String) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "username": username])
+    }
+    
+    public var __typename: String {
+        get {
+            return resultMap["__typename"]! as! String
+        }
+        set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+        }
+    }
+    
+    public var id: GraphQLID {
+        get {
+            return resultMap["id"]! as! GraphQLID
+        }
+        set {
+            resultMap.updateValue(newValue, forKey: "id")
+        }
+    }
+    
+    public var username: String {
+        get {
+            return resultMap["username"]! as! String
+        }
+        set {
+            resultMap.updateValue(newValue, forKey: "username")
         }
     }
 }

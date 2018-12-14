@@ -21,8 +21,8 @@ class ApolloSignUpManager: SignUpManager {
         apollo.perform(
             mutation: RegisterUserMutation(username: username, password: password),
             queue: DispatchQueue.main) { (result, error) in
-                if let user = result?.data?.createUser {
-                    onCompleted?(.success(UserResponse(id: user.id, name: user.username)))
+                if let user = result?.data?.createUser?.fragments.userDetails {
+                    onCompleted?(.success(user))
                 } else if let error = error {
                     onCompleted?(.failed(error))
                 } else if let error = result?.errors?.first {

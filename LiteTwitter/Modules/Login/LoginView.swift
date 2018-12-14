@@ -28,6 +28,7 @@ class LoginView: BaseView {
         txtField.textColor = .black
         txtField.placeholder = "User name"
         txtField.borderStyle = .roundedRect
+        txtField.autocapitalizationType = .none
         return txtField
     }()
     
@@ -51,8 +52,8 @@ class LoginView: BaseView {
     
     private var confirmButton: UIButton = {
         let button = UIButton()
-        button.setTitleColor(UIColor.green, for: .normal)
         button.setTitle("Login", for: .normal)
+        button.backgroundColor = UIColor.lightBlue
         button.addTarget(self, action: #selector(handleConfirmButtonWasTapped), for: .touchUpInside)
         return button
     }()

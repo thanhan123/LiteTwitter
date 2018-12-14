@@ -7,15 +7,21 @@
 //
 
 import Foundation
+import SwiftKeychainWrapper
 
 protocol SaveUserLocalManager {
     func save(user: User, handler: @escaping (Result<Bool>) -> ())
 }
 
-class UserDefaultSaveUserLocalManager: SaveUserLocalManager {
+class KeyChainSaveUserLocalManager: SaveUserLocalManager {
     
     func save(user: User, handler: @escaping (Result<Bool>) -> ()) {
-        UserDefaults.standard.set(user.toDictionary(), forKey: "user")
-        handler(.success(true))
+        do {
+            let data = try JSONSerialization.data(withJSONObject: user.toDictionary())
+            KeychainWrapper.standard.set(data, forKey: "user")
+            handler(.success(true))
+        } catch {
+            handler(.failed(error))
+        }
     }
 }

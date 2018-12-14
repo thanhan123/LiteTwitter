@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import SwiftKeychainWrapper
 
 protocol DeleteUserLocalManager {
     func deleteUser(handler: @escaping ((Result<Bool>) -> ()))
 }
 
-class UserDefaultDeleteUserLocalManager: DeleteUserLocalManager {
+class KeyChainDeleteUserLocalManager: DeleteUserLocalManager {
     func deleteUser(handler: @escaping ((Result<Bool>) -> ())) {
-        UserDefaults.standard.removeObject(forKey: "user")
+        KeychainWrapper.standard.removeObject(forKey: "user")
         handler(.success(true))
     }
 }

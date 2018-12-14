@@ -15,12 +15,12 @@ protocol LoginCreator {
 class LoginCreatorProvider: LoginCreator {
     func createLoginScreen(with window: UIWindow?) -> LoginViewController {
         let loginAction = LoginActionProvider(
-            saveUserLocalManager: UserDefaultSaveUserLocalManager(),
+            saveUserLocalManager: KeyChainSaveUserLocalManager(),
             loginManager: ApolloLoginManager()
         )
         let signUpAction = SignUpActionProvider(
             signUpManager: ApolloSignUpManager(),
-            userLocalManager: UserDefaultSaveUserLocalManager()
+            userLocalManager: KeyChainSaveUserLocalManager()
         )
         let loginVC = LoginViewController(
             loginAction: loginAction,

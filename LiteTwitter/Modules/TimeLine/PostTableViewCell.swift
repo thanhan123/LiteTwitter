@@ -22,6 +22,11 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
+    var editIncon: UIImageView = {
+        var imageView = UIImageView(image: #imageLiteral(resourceName: "icon-edit.png"))
+        return imageView
+    }()
+    
     private var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -29,14 +34,13 @@ class PostTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    static var identifier: String {
-        return "\(type(of: self))"
-    }
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        stackView.addArrangedSubview(titleLabel)
+        
+        let horizontalStackView = UIStackView(arrangedSubviews: [titleLabel, editIncon])
+        horizontalStackView.axis = .horizontal
+        
+        stackView.addArrangedSubview(horizontalStackView)
         stackView.addArrangedSubview(contentLabel)
         contentView.addSubview(stackView)
         
@@ -46,10 +50,11 @@ class PostTableViewCell: UITableViewCell {
         stackView.bottomAnchor.constraint(equalTo: layoutsGuide.bottomAnchor).isActive = true
         stackView.leadingAnchor.constraint(equalTo: layoutsGuide.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: layoutsGuide.trailingAnchor).isActive = true
+        
+        selectionStyle = .none
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

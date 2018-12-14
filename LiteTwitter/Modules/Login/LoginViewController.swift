@@ -32,7 +32,8 @@ class LoginViewController: BaseViewController<LoginView>, LoginViewActionDelegat
                 cancel: nil,
                 buttons: ["Ok"],
                 action: nil,
-                sender: self)
+                sender: self
+            )
             
         case .success:
             let vc = self.timeLineCreator.createTimeLineScreen(with: self.router.window)
