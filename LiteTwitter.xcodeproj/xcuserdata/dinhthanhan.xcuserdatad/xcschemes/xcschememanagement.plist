@@ -7,7 +7,25 @@
 		<key>LiteTwitter.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>8</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>D13DE82621BB660000946ECA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D13DE83A21BB660300946ECA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D13DE84521BB660300946ECA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

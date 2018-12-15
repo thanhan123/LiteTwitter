@@ -29,7 +29,7 @@ class LoginCreatorProvider: LoginCreator {
             router: RouterProvider(window: window),
             showLoaderAction: MBProgressHUDShowLoaderAction(),
             showAlertAction: ShowAlertActionProvider(),
-            validationFieldAction: ValidationFieldActionProvider()
+            validateInputsAction: ValidateInputsActionProvider(validationFieldManager: ValidationFieldManagerProvider())
         )
         
         return loginVC

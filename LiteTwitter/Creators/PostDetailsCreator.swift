@@ -25,7 +25,7 @@ class PostDetailsCreatorProvider: PostDetailsCreator {
             deletePostAction: DeletePostActionProvider(deletePostManager: ApolloDeletePostManager()),
             showAlertAction: ShowAlertActionProvider(),
             showLoaderAction: MBProgressHUDShowLoaderAction(),
-            validationFieldAction: ValidationFieldActionProvider(),
+            validateInputsAction: ValidateInputsActionProvider(validationFieldManager: ValidationFieldManagerProvider()),
             delegate: delegate
         )
         

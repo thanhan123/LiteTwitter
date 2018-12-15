@@ -15,7 +15,7 @@ protocol Post {
     var authorId: String { get }
 }
 
-struct PostReponse: Post {
+struct PostResponse: Post {
     let id: String
     let title: String
     let content: String

@@ -1,5 +1,5 @@
 //
-//  ValidationFieldAction.swift
+//  ValidationFieldManager.swift
 //  LiteTwitter
 //
 //  Created by Dinh Thanh An on 13/12/2018.
@@ -24,11 +24,11 @@ enum ValidationFieldResult {
 
 extension ValidationFieldResult: Equatable { }
 
-protocol ValidationFieldAction {
+protocol ValidationFieldManager {
     func validate(string: String?, type: ValidatitonFieldType) -> ValidationFieldResult
 }
 
-struct ValidationFieldActionProvider: ValidationFieldAction {
+struct ValidationFieldManagerProvider: ValidationFieldManager {
     func validate(string: String?, type: ValidatitonFieldType) -> ValidationFieldResult {
         guard let unwrappedString = string else {
             switch type {

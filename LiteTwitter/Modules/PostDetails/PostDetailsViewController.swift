@@ -18,13 +18,13 @@ protocol PostDetailsViewDelegate: class {
 }
 
 class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetailsViewActionDelegate {
-    let screenType: PostDetailsScreenType
+    var screenType: PostDetailsScreenType
     let updatePostAction: UpdatePostAction
     let createPostAction: CreatePostAction
     let deletePostAction: DeletePostAction
     let showAlertAction: ShowAlertAction
     let showLoaderAction: ShowLoaderAction
-    let validationFieldAction: ValidationFieldAction
+    let validateInputsAction: ValidateInputsAction
     weak var delegate: PostDetailsViewDelegate?
     
     lazy var actionHandler: ((Result<Bool>) -> ()) = { [weak self] result in
@@ -55,7 +55,7 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
          deletePostAction: DeletePostAction,
          showAlertAction: ShowAlertAction,
          showLoaderAction: ShowLoaderAction,
-         validationFieldAction: ValidationFieldAction,
+         validateInputsAction: ValidateInputsAction,
          delegate: PostDetailsViewDelegate?) {
         self.screenType = screenType
         self.updatePostAction = updatePostAction
@@ -63,7 +63,7 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
         self.deletePostAction = deletePostAction
         self.showAlertAction = showAlertAction
         self.showLoaderAction = showLoaderAction
-        self.validationFieldAction = validationFieldAction
+        self.validateInputsAction = validateInputsAction
         self.delegate = delegate
         
         super.init(nibName: nil, bundle: nil)
@@ -104,7 +104,7 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
         showLoaderAction.show(in: currentView)
         switch screenType {
         case let .edit(post):
-            let newPost = PostReponse(
+            let newPost = PostResponse(
                 id: post.id,
                 title: title,
                 content: content,
@@ -149,8 +149,10 @@ class PostDetailsViewController: BaseViewController<PostDetailsView>, PostDetail
     }
     
     func handleInputFieldChanged() {
-        let isInputValid = validationFieldAction.validate(string: currentView.titleString, type: .require) == .passed &&
-        validationFieldAction.validate(string: currentView.contentString, type: .require) == .passed
+        let isInputValid = validateInputsAction.validate(type: .postDetails(
+            title: currentView.titleString,
+            content: currentView.contentString)
+        ).isValid
         currentView.updateConfirmButton(isEnabled: isInputValid)
     }
 }

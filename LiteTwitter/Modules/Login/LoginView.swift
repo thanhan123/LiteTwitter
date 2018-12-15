@@ -41,7 +41,7 @@ class LoginView: BaseView {
         return txtField
     }()
     
-    private var confirmPasswordTextField: UITextField = {
+    var confirmPasswordTextField: UITextField = {
         let txtField = UITextField()
         txtField.textColor = .black
         txtField.placeholder = "Confirm Password"

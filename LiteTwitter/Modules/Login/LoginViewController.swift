@@ -15,7 +15,7 @@ class LoginViewController: BaseViewController<LoginView>, LoginViewActionDelegat
     let showLoaderAction: ShowLoaderAction
     let showAlertAction: ShowAlertAction
     let timeLineCreator: TimeLineCreator
-    let validationFieldAction: ValidationFieldAction
+    let validateInputsAction: ValidateInputsAction
     let router: Router
     
     lazy var actionHandler: (Result<Bool>) -> () = { [weak self] (result) in
@@ -55,14 +55,14 @@ class LoginViewController: BaseViewController<LoginView>, LoginViewActionDelegat
          router: Router,
          showLoaderAction: ShowLoaderAction,
          showAlertAction: ShowAlertAction,
-         validationFieldAction: ValidationFieldAction) {
+         validateInputsAction: ValidateInputsAction) {
         self.loginAction = loginAction
         self.signUpAction = signUpAction
         self.timeLineCreator = timeLineCreator
         self.router = router
         self.showLoaderAction = showLoaderAction
         self.showAlertAction = showAlertAction
-        self.validationFieldAction = validationFieldAction
+        self.validateInputsAction = validateInputsAction
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -89,31 +89,26 @@ class LoginViewController: BaseViewController<LoginView>, LoginViewActionDelegat
         }
     }
     
-    func validateInputFields() -> (isValid: Bool, message: String?) {
-        if validationFieldAction.validate(string: currentView.username, type: .require) != .passed {
-            return (false, "username is required")
-        }
-        
-        if validationFieldAction.validate(string: currentView.password, type: .require) != .passed {
-            return (false, "username is required")
-        }
-        
-        if state == .signUp &&
-            (validationFieldAction.validate(string: currentView.confirmPassword, type: .require) != .passed ||
-                currentView.password != currentView.confirmPassword) {
-            return (false, "Confirm password is required and must be same with password")
-        }
-        
-        return (true, nil)
-    }
-    
     // MARK: Func - LoginViewActionDelegate
     func actionButtonWasTapped() {
-        let validateField = validateInputFields()
-        guard validateField.isValid else {
+        var validateField: (isValid: Bool, message: String?)?
+        switch state {
+        case .login:
+            validateField = validateInputsAction.validate(type: .login(
+                username: currentView.username,
+                password: currentView.password)
+            )
+        case .signUp:
+            validateField = validateInputsAction.validate(type: .signUp(
+                username: currentView.username,
+                password: currentView.password,
+                confirmPassword: currentView.confirmPassword)
+            )
+        }
+        guard validateField?.isValid != false else {
             showAlertAction.show(
                 title: "Error",
-                message: validateField.message,
+                message: validateField?.message,
                 cancel: nil,
                 buttons: ["Ok"],
                 action: nil,
