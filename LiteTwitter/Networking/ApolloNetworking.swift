@@ -9,4 +9,4 @@
 import Foundation
 import Apollo
 
-let graphCoolURL = "https://api.graph.cool/simple/v1/cjpetyw0magfv0143gzhpwuts"
+let graphCoolURL = URL(string: "https://api.graph.cool/simple/v1/cjpetyw0magfv0143gzhpwuts")!

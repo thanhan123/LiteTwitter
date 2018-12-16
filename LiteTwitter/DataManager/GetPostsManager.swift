@@ -8,15 +8,19 @@
 
 import Apollo
 
-protocol GetPostsManager {
+protocol GetPostsManager: BaseURL {
     func getPosts(handler: @escaping ((Result<[Post]>) -> ()) )
 }
 
 class ApolloGetPostsManager: GetPostsManager {
+    var baseURL: URL
     
-    let apollo = ApolloClient(url: URL(string: graphCoolURL)!)
+    init(baseURL: URL = graphCoolURL) {
+        self.baseURL = baseURL
+    }
     
     func getPosts(handler: @escaping ((Result<[Post]>) -> ())) {
+        let apollo = ApolloClient(url: baseURL)
         apollo.fetch(
             query: AllPostsQuery(),
             cachePolicy: .fetchIgnoringCacheData,

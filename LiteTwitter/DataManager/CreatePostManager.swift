@@ -8,14 +8,19 @@
 
 import Apollo
 
-protocol CreatePostManager {
+protocol CreatePostManager: BaseURL {
     func createPost(content: String, title: String, authorId: String, handler: @escaping ((Result<Post>) -> ()))
 }
 
 class ApolloCreatePostManager: CreatePostManager {
-    let apollo = ApolloClient(url: URL(string: graphCoolURL)!)
+    var baseURL: URL
+    
+    init(baseURL: URL = graphCoolURL) {
+        self.baseURL = baseURL
+    }
     
     func createPost(content: String, title: String, authorId: String, handler: @escaping ((Result<Post>) -> ())) {
+        let apollo = ApolloClient(url: baseURL)
         apollo.perform(
             mutation: CreatePostMutation(
                 title: title,

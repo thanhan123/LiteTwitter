@@ -8,14 +8,19 @@
 
 import Apollo
 
-protocol DeletePostManager {
+protocol DeletePostManager: BaseURL {
     func deletePost(id: String, handler: @escaping ((Result<String>) -> ()))
 }
 
 class ApolloDeletePostManager: DeletePostManager {
-    let apolloClient = ApolloClient(url: URL(string: graphCoolURL)!)
+    var baseURL: URL
+    
+    init(baseURL: URL = graphCoolURL) {
+        self.baseURL = baseURL
+    }
     
     func deletePost(id: String, handler: @escaping ((Result<String>) -> ())) {
+        let apolloClient = ApolloClient(url: baseURL)
         apolloClient.perform(
             mutation: DeletePostMutation(id: id),
             queue: DispatchQueue.main) { (result, error) in

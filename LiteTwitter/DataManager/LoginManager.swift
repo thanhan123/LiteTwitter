@@ -9,15 +9,23 @@
 import Foundation
 import Apollo
 
-protocol LoginManager {
+protocol BaseURL {
+    var baseURL: URL { get set }
+}
+
+protocol LoginManager: BaseURL {
     func login(with username: String, password: String, onCompleted: ((Result<User>)->())?)
 }
 
 class ApolloLoginManager: LoginManager {
+    var baseURL: URL
     
-    let apollo = ApolloClient(url: URL(string: graphCoolURL)!)
+    init(baseURL: URL = graphCoolURL) {
+        self.baseURL = baseURL
+    }
     
     func login(with username: String, password: String, onCompleted: ((Result<User>) -> ())?) {
+        let apollo = ApolloClient(url: baseURL)
         apollo.fetch(
             query: GetUserQuery(username: username, password: password),
             cachePolicy: .fetchIgnoringCacheData,

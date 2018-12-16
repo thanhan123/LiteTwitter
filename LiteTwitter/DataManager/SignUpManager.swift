@@ -9,15 +9,19 @@
 import Foundation
 import Apollo
 
-protocol SignUpManager {
+protocol SignUpManager: BaseURL {
     func signUp(with username: String, password: String, onCompleted: ((Result<User>)->())?)
 }
 
 class ApolloSignUpManager: SignUpManager {
+    var baseURL: URL
     
-    let apollo = ApolloClient(url: URL(string: graphCoolURL)!)
+    init(baseURL: URL = graphCoolURL) {
+        self.baseURL = baseURL
+    }
     
     func signUp(with username: String, password: String, onCompleted: ((Result<User>) -> ())?) {
+        let apollo = ApolloClient(url: baseURL)
         apollo.perform(
             mutation: RegisterUserMutation(username: username, password: password),
             queue: DispatchQueue.main) { (result, error) in

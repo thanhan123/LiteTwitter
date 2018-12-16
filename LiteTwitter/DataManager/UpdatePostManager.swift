@@ -8,14 +8,19 @@
 
 import Apollo
 
-protocol UpdatePostManager {
+protocol UpdatePostManager: BaseURL {
     func updatePost(_ post: Post, handler: @escaping ((Result<Post>) -> ()))
 }
 
 class ApolloUpdatePostManager: UpdatePostManager {
-    let apollo = ApolloClient(url: URL(string: graphCoolURL)!)
+    var baseURL: URL
+    
+    init(baseURL: URL = graphCoolURL) {
+        self.baseURL = baseURL
+    }
     
     func updatePost(_ post: Post, handler: @escaping ((Result<Post>) -> ())) {
+        let apollo = ApolloClient(url: baseURL)
         apollo.perform(
             mutation: UpdatePostMutation(
                 title: post.title,
