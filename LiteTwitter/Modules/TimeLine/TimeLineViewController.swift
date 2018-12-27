@@ -10,11 +10,18 @@ import UIKit
 
 class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActionDelegate, UITableViewDelegate {
     var dataSource: TableViewDataSource<Post>?
-    var userId: String?
     var heights = [String: CGFloat]()
+    lazy var receivePostsHandler: (Result<[Post]>) -> () = { [weak self] (result) in
+        switch result {
+        case let .success(posts):
+            self?.handleEvent(event: .onReceivePosts(posts))
+            
+        case let .failed(error):
+            self?.handleEvent(event: .onReceiveError(error))
+        }
+    }
     
-    let getPostsAction: GetPostsAction
-    let getCurrentUserAction: GetCurrentUserAction
+    let logicController: TimeLineLogicController
     let logoutAction: LogoutAction
     let showLoaderAction: ShowLoaderAction
     let showAlertAction: ShowAlertAction
@@ -22,16 +29,14 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
     let postDetailsCreator: PostDetailsCreator
     let loginCreator: LoginCreator
     
-    init(getPostsAction: GetPostsAction,
-         getCurrentUserAction: GetCurrentUserAction,
+    init(logicController: TimeLineLogicController,
          logoutAction: LogoutAction,
          router: Router,
          postDetailsCreator: PostDetailsCreator,
          loginCreator: LoginCreator,
          showLoaderAction: ShowLoaderAction,
          showAlertAction: ShowAlertAction) {
-        self.getPostsAction = getPostsAction
-        self.getCurrentUserAction = getCurrentUserAction
+        self.logicController = logicController
         self.router = router
         self.postDetailsCreator = postDetailsCreator
         self.loginCreator = loginCreator
@@ -48,7 +53,6 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
     
     enum Event {
         case onReceiveError(Error)
-        case onReceiveUserId(String)
         case onReceivePosts([Post])
         case onReceiveSelectedPost(Post)
         case onSuccessfullyLogout
@@ -68,12 +72,6 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
                 sender: self
             )
             
-        case let .onReceiveUserId(id):
-            userId = id
-            getPostsAction.getPosts(handler: { [weak self] (posts) in
-                self?.handleEvent(event: .onReceivePosts(posts))
-            })
-            
         case let .onReceivePosts(posts):
             if dataSource == nil {
                 dataSource = TableViewDataSource(
@@ -83,7 +81,7 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
                         if let cell = cell as? PostTableViewCell {
                             cell.titleLabel.text = model.title
                             cell.contentLabel.text = model.content
-                            cell.editIncon.isHidden = model.authorId != self?.userId
+                            cell.editIncon.isHidden = model.authorId != self?.logicController.userId
                         }
                 })
                 currentView.tableView.dataSource = dataSource
@@ -122,20 +120,12 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         currentView.tableView.delegate = self
         
         showLoaderAction.show(in: currentView)
-        getCurrentUserAction.getCurrentUser { [weak self] (result) in
-            switch result {
-            case let .success(user):
-                self?.handleEvent(event: .onReceiveUserId(user.id))
-                
-            case let .failed(error):
-                self?.handleEvent(event: .onReceiveError(error))
-            }
-        }
+        logicController.loadPosts(handler: receivePostsHandler)
     }
     
     // MARK: TimeLineViewActionDelegate
     func handleAddBarButtonWasTapped() {
-        if let userId = userId {
+        if let userId = logicController.userId {
             let postDetailsVC = postDetailsCreator.createPostDetailsScreen(
                 with: router.window,
                 screenType: .createPost(author: userId),
@@ -164,7 +154,7 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
     // MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let selectedPost = dataSource?.models[indexPath.row],
-            selectedPost.authorId == userId {
+            selectedPost.authorId == logicController.userId {
             handleEvent(event: .onReceiveSelectedPost(selectedPost))
         }
     }
@@ -187,9 +177,6 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
 
 extension TimeLineViewController: PostDetailsViewDelegate {
     func didUpdatePost() {
-        if let userId = userId {
-            showLoaderAction.show(in: currentView)
-            handleEvent(event: .onReceiveUserId(userId))
-        }
+        logicController.loadPosts(handler: receivePostsHandler)
     }
 }
