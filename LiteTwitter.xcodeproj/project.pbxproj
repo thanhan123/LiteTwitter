@@ -10,6 +10,8 @@
 		2548D70621C3542B0055D9D2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548D70521C3542B0055D9D2 /* UIColor+Extension.swift */; };
 		2548D70821C362300055D9D2 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548D70721C362300055D9D2 /* Post.swift */; };
 		2548D70A21C365F70055D9D2 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548D70921C365F70055D9D2 /* UITableView+Extension.swift */; };
+		2563CADF21D9B86700EC0A60 /* Profile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2563CADE21D9B86700EC0A60 /* Profile.framework */; };
+		2563CAE021D9B86700EC0A60 /* Profile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2563CADE21D9B86700EC0A60 /* Profile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2577874E21D476C2006BD2EB /* TimeLineLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2577874D21D476C2006BD2EB /* TimeLineLogicController.swift */; };
 		258BE90021BE351100B87E29 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258BE8FF21BE351100B87E29 /* Router.swift */; };
 		258BE90321BE354400B87E29 /* TimeLineCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258BE90221BE354400B87E29 /* TimeLineCreator.swift */; };
@@ -83,10 +85,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2563CAD721D9B80000EC0A60 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2563CAE021D9B86700EC0A60 /* Profile.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2548D70521C3542B0055D9D2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		2548D70721C362300055D9D2 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		2548D70921C365F70055D9D2 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		2563CADE21D9B86700EC0A60 /* Profile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Profile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2577874D21D476C2006BD2EB /* TimeLineLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineLogicController.swift; sourceTree = "<group>"; };
 		258BE8FF21BE351100B87E29 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		258BE90221BE354400B87E29 /* TimeLineCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCreator.swift; sourceTree = "<group>"; };
@@ -160,6 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2563CADF21D9B86700EC0A60 /* Profile.framework in Frameworks */,
 				7CF1D1C2AB9A3BBD4A215C84 /* Pods_LiteTwitter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +280,7 @@
 		D13DE81E21BB660000946ECA = {
 			isa = PBXGroup;
 			children = (
+				2563CADE21D9B86700EC0A60 /* Profile.framework */,
 				D13DE82921BB660000946ECA /* LiteTwitter */,
 				D13DE83E21BB660300946ECA /* LiteTwitterTests */,
 				D13DE84921BB660300946ECA /* LiteTwitterUITests */,
@@ -455,6 +474,7 @@
 				D13DE82521BB660000946ECA /* Resources */,
 				1E952F36453381C92A845BCD /* [CP] Embed Pods Frameworks */,
 				3B2EAD035125C5D0E026DAFF /* [CP] Copy Pods Resources */,
+				2563CAD721D9B80000EC0A60 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

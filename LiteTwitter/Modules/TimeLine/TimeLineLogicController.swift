@@ -13,7 +13,7 @@ protocol TimeLineLogicController {
     func loadPosts(handler: @escaping ((Result<[Post]>) -> ()))
 }
 
-class TimeLineLogicControllerProvider: TimeLineLogicController {
+final class TimeLineLogicControllerProvider: TimeLineLogicController {
     
     var userId: String?
     
@@ -36,8 +36,9 @@ class TimeLineLogicControllerProvider: TimeLineLogicController {
         }
         
         if userId == nil {
-            getCurrentUserActionObservable.flatMap { [weak self] (user) -> Observable<[Post]> in
+            getCurrentUserActionObservable.do(onNext: { [weak self] (user) in
                 self?.userId = user.id
+            }).flatMap { [weak self] (user) -> Observable<[Post]> in
                 return self?.getPostsActionObservable ?? Observable.empty()
                 }.subscribe(
                     onNext: onNext,
