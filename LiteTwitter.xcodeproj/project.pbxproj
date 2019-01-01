@@ -10,8 +10,6 @@
 		2548D70621C3542B0055D9D2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548D70521C3542B0055D9D2 /* UIColor+Extension.swift */; };
 		2548D70821C362300055D9D2 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548D70721C362300055D9D2 /* Post.swift */; };
 		2548D70A21C365F70055D9D2 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548D70921C365F70055D9D2 /* UITableView+Extension.swift */; };
-		2563CADF21D9B86700EC0A60 /* Profile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2563CADE21D9B86700EC0A60 /* Profile.framework */; };
-		2563CAE021D9B86700EC0A60 /* Profile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2563CADE21D9B86700EC0A60 /* Profile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2577874E21D476C2006BD2EB /* TimeLineLogicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2577874D21D476C2006BD2EB /* TimeLineLogicController.swift */; };
 		258BE90021BE351100B87E29 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258BE8FF21BE351100B87E29 /* Router.swift */; };
 		258BE90321BE354400B87E29 /* TimeLineCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258BE90221BE354400B87E29 /* TimeLineCreator.swift */; };
@@ -55,6 +53,11 @@
 		D13DE87321BB6FD100946ECA /* SignUpAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13DE87221BB6FD100946ECA /* SignUpAction.swift */; };
 		D13DE87821BB7B4000946ECA /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13DE87721BB7B4000946ECA /* Networking.swift */; };
 		D13DE87C21BB7B9800946ECA /* ApolloNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13DE87B21BB7B9800946ECA /* ApolloNetworking.swift */; };
+		D157608821DB87E40020F194 /* LocalDataManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D157608621DB87CC0020F194 /* LocalDataManager.framework */; };
+		D157608921DB87E40020F194 /* LocalDataManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D157608621DB87CC0020F194 /* LocalDataManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D157608F21DBA67E0020F194 /* LiteTwitterCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D157608D21DBA67E0020F194 /* LiteTwitterCoreDataModel.xcdatamodeld */; };
+		D15760A021DBAFF50020F194 /* PostCoreDataModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D157609E21DBAFF50020F194 /* PostCoreDataModel+CoreDataClass.swift */; };
+		D15760A121DBAFF50020F194 /* PostCoreDataModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D157609F21DBAFF50020F194 /* PostCoreDataModel+CoreDataProperties.swift */; };
 		D1E67E6B21BBDF6700EC6B1C /* SignUpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E67E6A21BBDF6700EC6B1C /* SignUpManager.swift */; };
 		D1E67E6D21BBDF9300EC6B1C /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E67E6C21BBDF9300EC6B1C /* CustomError.swift */; };
 		D1E67E7021BBF9C000EC6B1C /* SaveUserLocalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E67E6F21BBF9C000EC6B1C /* SaveUserLocalManager.swift */; };
@@ -86,13 +89,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2563CAD721D9B80000EC0A60 /* Embed Frameworks */ = {
+		D157608A21DB87E50020F194 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2563CAE021D9B86700EC0A60 /* Profile.framework in Embed Frameworks */,
+				D157608921DB87E40020F194 /* LocalDataManager.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,7 +106,6 @@
 		2548D70521C3542B0055D9D2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		2548D70721C362300055D9D2 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		2548D70921C365F70055D9D2 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
-		2563CADE21D9B86700EC0A60 /* Profile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Profile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2577874D21D476C2006BD2EB /* TimeLineLogicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineLogicController.swift; sourceTree = "<group>"; };
 		258BE8FF21BE351100B87E29 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		258BE90221BE354400B87E29 /* TimeLineCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCreator.swift; sourceTree = "<group>"; };
@@ -158,6 +160,10 @@
 		D13DE87221BB6FD100946ECA /* SignUpAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAction.swift; sourceTree = "<group>"; };
 		D13DE87721BB7B4000946ECA /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		D13DE87B21BB7B9800946ECA /* ApolloNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApolloNetworking.swift; sourceTree = "<group>"; };
+		D157608621DB87CC0020F194 /* LocalDataManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LocalDataManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D157608E21DBA67E0020F194 /* LiteTwitterCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LiteTwitterCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		D157609E21DBAFF50020F194 /* PostCoreDataModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostCoreDataModel+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D157609F21DBAFF50020F194 /* PostCoreDataModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostCoreDataModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D1E67E6A21BBDF6700EC6B1C /* SignUpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpManager.swift; sourceTree = "<group>"; };
 		D1E67E6C21BBDF9300EC6B1C /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		D1E67E6F21BBF9C000EC6B1C /* SaveUserLocalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUserLocalManager.swift; sourceTree = "<group>"; };
@@ -177,8 +183,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2563CADF21D9B86700EC0A60 /* Profile.framework in Frameworks */,
 				7CF1D1C2AB9A3BBD4A215C84 /* Pods_LiteTwitter.framework in Frameworks */,
+				D157608821DB87E40020F194 /* LocalDataManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +276,7 @@
 		8E2B59FCC238B0C5E15DD0B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D157608621DB87CC0020F194 /* LocalDataManager.framework */,
 				620DEA289BA280A61A1D4191 /* Pods_LiteTwitter.framework */,
 				B143E7DBDE01AED57921EE1E /* Pods_LiteTwitterTests.framework */,
 				B495465A74768CF947BD38ED /* Pods_LiteTwitterUITests.framework */,
@@ -280,7 +287,6 @@
 		D13DE81E21BB660000946ECA = {
 			isa = PBXGroup;
 			children = (
-				2563CADE21D9B86700EC0A60 /* Profile.framework */,
 				D13DE82921BB660000946ECA /* LiteTwitter */,
 				D13DE83E21BB660300946ECA /* LiteTwitterTests */,
 				D13DE84921BB660300946ECA /* LiteTwitterUITests */,
@@ -303,6 +309,7 @@
 		D13DE82921BB660000946ECA /* LiteTwitter */ = {
 			isa = PBXGroup;
 			children = (
+				D157608C21DBA51D0020F194 /* CoreDataModel */,
 				2548D70421C354150055D9D2 /* Extensions */,
 				25B9E55421BE7CC300D9AA81 /* Models */,
 				258BE90621BE49B200B87E29 /* TableViewDataSource */,
@@ -418,6 +425,16 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		D157608C21DBA51D0020F194 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				D157609E21DBAFF50020F194 /* PostCoreDataModel+CoreDataClass.swift */,
+				D157609F21DBAFF50020F194 /* PostCoreDataModel+CoreDataProperties.swift */,
+				D157608D21DBA67E0020F194 /* LiteTwitterCoreDataModel.xcdatamodeld */,
+			);
+			path = CoreDataModel;
+			sourceTree = "<group>";
+		};
 		D1AC660C21BBCA8400A74380 /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,7 +491,7 @@
 				D13DE82521BB660000946ECA /* Resources */,
 				1E952F36453381C92A845BCD /* [CP] Embed Pods Frameworks */,
 				3B2EAD035125C5D0E026DAFF /* [CP] Copy Pods Resources */,
-				2563CAD721D9B80000EC0A60 /* Embed Frameworks */,
+				D157608A21DB87E50020F194 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -808,6 +825,7 @@
 				2548D70A21C365F70055D9D2 /* UITableView+Extension.swift in Sources */,
 				25B9E54821BE58A300D9AA81 /* GetCurrentUserAction.swift in Sources */,
 				258BE90321BE354400B87E29 /* TimeLineCreator.swift in Sources */,
+				D15760A021DBAFF50020F194 /* PostCoreDataModel+CoreDataClass.swift in Sources */,
 				D1E67E6D21BBDF9300EC6B1C /* CustomError.swift in Sources */,
 				25D96E3921C26BB0005D852E /* ValidationFieldManager.swift in Sources */,
 				D1E67E7221BBFE8100EC6B1C /* GetUserLocalManager.swift in Sources */,
@@ -818,6 +836,7 @@
 				D13DE87C21BB7B9800946ECA /* ApolloNetworking.swift in Sources */,
 				D1E67E6B21BBDF6700EC6B1C /* SignUpManager.swift in Sources */,
 				258BE90521BE356700B87E29 /* LoginCreator.swift in Sources */,
+				D15760A121DBAFF50020F194 /* PostCoreDataModel+CoreDataProperties.swift in Sources */,
 				2548D70621C3542B0055D9D2 /* UIColor+Extension.swift in Sources */,
 				D101149121C4F6BA001E1B45 /* ValidateInputsAction.swift in Sources */,
 				25D96E3521C0ECF4005D852E /* ShowAlertAction.swift in Sources */,
@@ -838,6 +857,7 @@
 				25B9E54621BE517400D9AA81 /* GetPostsAction.swift in Sources */,
 				D13DE86F21BB6FB800946ECA /* LoginAction.swift in Sources */,
 				25D96E2921BFBC6B005D852E /* UpdatePostManager.swift in Sources */,
+				D157608F21DBA67E0020F194 /* LiteTwitterCoreDataModel.xcdatamodeld in Sources */,
 				25D96E2321BF6CAC005D852E /* GraphQLAPI.swift in Sources */,
 				25B9E55321BE736900D9AA81 /* CreatePostAction.swift in Sources */,
 			);
@@ -1166,6 +1186,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D157608D21DBA67E0020F194 /* LiteTwitterCoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D157608E21DBA67E0020F194 /* LiteTwitterCoreDataModel.xcdatamodel */,
+			);
+			currentVersion = D157608E21DBA67E0020F194 /* LiteTwitterCoreDataModel.xcdatamodel */;
+			path = LiteTwitterCoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D13DE81F21BB660000946ECA /* Project object */;
 }

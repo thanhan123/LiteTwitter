@@ -8,17 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		2563CACE21D9B7BA00EC0A60 /* Profile.h in Headers */ = {isa = PBXBuildFile; fileRef = 2563CACC21D9B7BA00EC0A60 /* Profile.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2563DF0821DA1BFA00EC0A60 /* CoreDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2563DF0621DA1BFA00EC0A60 /* CoreDataManager.h */; };
-		2563DF0921DA1BFA00EC0A60 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2563DF0721DA1BFA00EC0A60 /* CoreDataManager.m */; };
-		2563DF0C21DA1E5C00EC0A60 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2563DF0B21DA1E5C00EC0A60 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2563CAC921D9B7BA00EC0A60 /* Profile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Profile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2563CACC21D9B7BA00EC0A60 /* Profile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		2563CACD21D9B7BA00EC0A60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2563DF0621DA1BFA00EC0A60 /* CoreDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
-		2563DF0721DA1BFA00EC0A60 /* CoreDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		2563DF0B21DA1E5C00EC0A60 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -27,7 +22,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2563DF0C21DA1E5C00EC0A60 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,8 +50,6 @@
 			children = (
 				2563CACC21D9B7BA00EC0A60 /* Profile.h */,
 				2563CACD21D9B7BA00EC0A60 /* Info.plist */,
-				2563DF0621DA1BFA00EC0A60 /* CoreDataManager.h */,
-				2563DF0721DA1BFA00EC0A60 /* CoreDataManager.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -78,7 +70,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2563CACE21D9B7BA00EC0A60 /* Profile.h in Headers */,
-				2563DF0821DA1BFA00EC0A60 /* CoreDataManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +140,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2563DF0921DA1BFA00EC0A60 /* CoreDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

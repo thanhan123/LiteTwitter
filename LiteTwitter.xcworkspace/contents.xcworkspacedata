@@ -8,6 +8,9 @@
       location = "container:"
       name = "Features">
       <FileRef
+         location = "group:LocalDataManager/LocalDataManager.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Profile/Profile.xcodeproj">
       </FileRef>
    </Group>

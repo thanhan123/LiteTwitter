@@ -37,3 +37,23 @@ class ApolloGetPostsManager: GetPostsManager {
         }
     }
 }
+
+import LocalDataManager
+
+protocol GetPostsLocalManager {
+    func getPosts(handler: @escaping ((Result<[Post]>) -> ()) )
+}
+
+class GetPostsLocalManagerProvider: GetPostsLocalManager {
+    
+    let localDataManager: LocalDataManagerInterface<PostCoreDataModel>
+    
+    init(localDataManager: LocalDataManagerInterface<PostCoreDataModel>) {
+        self.localDataManager = localDataManager
+    }
+    
+    func getPosts(handler: @escaping ((Result<[Post]>) -> ())) {
+        let result = localDataManager.getObjectsWithType(PostCoreDataModel.self, filter: NSPredicate(value: true))
+        handler(.success(result))
+    }
+}
