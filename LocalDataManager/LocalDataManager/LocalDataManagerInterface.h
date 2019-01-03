@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LocalDataManagerInterface<__covariant ObjectType> : NSObject
 
 - (NSArray<ObjectType>*)getObjectsWithType:(Class)type filter:(NSPredicate*)predicate;
+- (void)saveObjectWithType:(Class)type atrributesDictionary:(nullable NSDictionary*)dict;
 
 @end
 
