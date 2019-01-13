@@ -9,18 +9,29 @@
 import Foundation
 
 protocol UpdatePostAction {
-    var updatePostManager: UpdatePostManager { get set }
     func updatePost(_ post: Post, handler: @escaping ((Result<Bool>) -> ()))
 }
 
 class UpdatePostActionProvider: UpdatePostAction {
     var updatePostManager: UpdatePostManager
+    var internetChecking: InternetConnectionCheckingAction
     
-    init(updatePostManager: UpdatePostManager) {
+    init(updatePostManager: UpdatePostManager,
+         internetChecking: InternetConnectionCheckingAction = InternetConnectionCheckingActionProvider()) {
         self.updatePostManager = updatePostManager
+        self.internetChecking = internetChecking
     }
     
     func updatePost(_ post: Post, handler: @escaping ((Result<Bool>) -> ())) {
+        internetChecking.startChecking(
+            reachable: {
+                
+        },
+            unreachable: {
+                
+        }
+        )
+        
         updatePostManager.updatePost(post) { (result) in
             switch result {
             case .success:

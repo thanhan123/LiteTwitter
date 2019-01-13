@@ -40,6 +40,7 @@
         NSLog(@"error: %@", error);
     }
     self.managedObjectContext.undoManager = [[NSUndoManager alloc] init];
+    [self.managedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
 }
 
 - (NSManagedObjectModel*)managedObjectModel
@@ -47,12 +48,34 @@
     return [[NSManagedObjectModel alloc] initWithContentsOfURL:self.modelURL];
 }
 
-
-#pragma LocalDataManagerInterface
 - (NSArray *)getObjectsWithType:(id)type filter:(NSPredicate *)predicate {
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass(type)];
     request.predicate = predicate;
     return [self.managedObjectContext executeFetchRequest:request error:NULL];
+}
+
+- (void)saveObjectsWithType:(id)type atrributesDictionary:(NSArray<NSDictionary *> *)dicts {
+    for (int i = 0; i < dicts.count; i++) {
+        id item = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(type)
+                                                inManagedObjectContext:self.managedObjectContext];
+        NSDictionary *dict = dicts[i];
+        [self setAttributes:dict for:item];
+    }
+    
+    [self.managedObjectContext save:NULL];
+}
+
+- (void)setAttributes:(NSDictionary *)attr for:(id)object {
+    NSArray *allKeys = [attr allKeys];
+    for (int j = 0; j < allKeys.count; j++) {
+        id key = allKeys[j];
+        [object setValue:[attr valueForKey:key] forKey:key];
+    }
+}
+
+- (void)updateObjectsWithType:(id)type atrributesDictionary:(NSArray<NSDictionary *> *)dicts filter:(NSPredicate *)predicate {
+    NSManagedObject* objects = [self getObjectsWithType:type filter:predicate];
+    [self.managedObjectContext save:NULL];
 }
 
 @end

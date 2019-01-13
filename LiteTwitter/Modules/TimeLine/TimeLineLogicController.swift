@@ -57,7 +57,7 @@ extension GetCurrentUserAction {
     
     var observable: Observable<User> {
         return Observable.create({ observer -> Disposable in
-            self.getCurrentLocalUser.getCurrentUser(handler: { result in
+            self.getCurrentUser(handler: { (result) in
                 switch result {
                 case let .success(user):
                     observer.onNext(user)
@@ -76,14 +76,8 @@ extension GetPostsAction {
     
     var observable: Observable<[Post]> {
         return Observable.create({ observer -> Disposable in
-            self.getPostsManager.getPosts(handler: { result in
-                switch result {
-                case let .success(posts):
-                    observer.onNext(posts)
-                    
-                case let .failed(error):
-                    observer.onError(error)
-                }
+            self.getPosts(handler: { (posts) in
+                observer.onNext(posts)
             })
             
             return Disposables.create()

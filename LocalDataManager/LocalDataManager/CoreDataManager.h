@@ -8,15 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "LocalDataManagerInterface.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CoreDataManager : LocalDataManagerInterface
+@interface CoreDataManager: NSObject
 
 - (instancetype)initWithStoreURL: (NSURL*)storeURL modelURL:(NSURL*)modelURL;
 
-@property (readonly) NSManagedObjectContext *managedObjectContext;
+- (NSArray *)getObjectsWithType:(id)type filter:(NSPredicate *)predicate;
+- (void)saveObjectsWithType:(id)type atrributesDictionary:(NSArray<NSDictionary *> *)dicts;
 
 @end
 

@@ -17,7 +17,11 @@ class TimeLineCreatorProvider: TimeLineCreator {
         let vc = TimeLineViewController(
             logicController: TimeLineLogicControllerProvider(
                 getCurrentUserAction: GetCurrentUserActionProvider(getCurrentLocalUser: KeyChainGetUserLocalManager()),
-                getPostsAction: GetPostsActionProvider(getPostsManager: ApolloGetPostsManager())),
+                getPostsAction: GetPostsActionProvider(
+                    getPostsManager: ApolloGetPostsManager(),
+                    postsLocalManager: CoreDataLocalPostsManagerProvider()
+                )
+            ),
             logoutAction: LogoutActionProvider(deleteUserLocalManager: KeyChainDeleteUserLocalManager()),
             router: RouterProvider(window: window),
             postDetailsCreator: PostDetailsCreatorProvider(),

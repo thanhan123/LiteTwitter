@@ -16,5 +16,4 @@ FOUNDATION_EXPORT const unsigned char LocalDataManagerVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <LocalDataManager/PublicHeader.h>
 
-#import <LocalDataManager/LocalDataManagerInterface.h>
 #import <LocalDataManager/CoreDataManager.h>

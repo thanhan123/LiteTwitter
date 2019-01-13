@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D14351D221E08DD00077CE45 /* CoreDataManagerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14351D121E08DD00077CE45 /* CoreDataManagerWrapper.swift */; };
 		D157606A21DB34940020F194 /* LocalDataManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D157606021DB34940020F194 /* LocalDataManager.framework */; };
 		D157606F21DB34940020F194 /* LocalDataManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D157606E21DB34940020F194 /* LocalDataManagerTests.m */; };
 		D157607121DB34940020F194 /* LocalDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D157606321DB34940020F194 /* LocalDataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D157607C21DB34BA0020F194 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D157607A21DB34BA0020F194 /* CoreDataManager.m */; };
 		D157607F21DB497C0020F194 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D157607E21DB497C0020F194 /* CoreData.framework */; };
-		D157608421DB85AC0020F194 /* LocalDataManagerInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = D157608221DB85AC0020F194 /* LocalDataManagerInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D157608521DB85AC0020F194 /* LocalDataManagerInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = D157608321DB85AC0020F194 /* LocalDataManagerInterface.m */; };
 		D157608B21DB93630020F194 /* CoreDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D157607B21DB34BA0020F194 /* CoreDataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -28,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D14351D121E08DD00077CE45 /* CoreDataManagerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerWrapper.swift; sourceTree = "<group>"; };
 		D157606021DB34940020F194 /* LocalDataManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LocalDataManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D157606321DB34940020F194 /* LocalDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDataManager.h; sourceTree = "<group>"; };
 		D157606421DB34940020F194 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,8 +37,6 @@
 		D157607A21DB34BA0020F194 /* CoreDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		D157607B21DB34BA0020F194 /* CoreDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
 		D157607E21DB497C0020F194 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		D157608221DB85AC0020F194 /* LocalDataManagerInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDataManagerInterface.h; sourceTree = "<group>"; };
-		D157608321DB85AC0020F194 /* LocalDataManagerInterface.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalDataManagerInterface.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				D157606321DB34940020F194 /* LocalDataManager.h */,
-				D157608221DB85AC0020F194 /* LocalDataManagerInterface.h */,
-				D157608321DB85AC0020F194 /* LocalDataManagerInterface.m */,
+				D14351D121E08DD00077CE45 /* CoreDataManagerWrapper.swift */,
 				D157607B21DB34BA0020F194 /* CoreDataManager.h */,
 				D157607A21DB34BA0020F194 /* CoreDataManager.m */,
 				D157606421DB34940020F194 /* Info.plist */,
@@ -118,7 +115,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D157608B21DB93630020F194 /* CoreDataManager.h in Headers */,
-				D157608421DB85AC0020F194 /* LocalDataManagerInterface.h in Headers */,
 				D157607121DB34940020F194 /* LocalDataManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,6 +169,7 @@
 				TargetAttributes = {
 					D157605F21DB34940020F194 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					D157606821DB34940020F194 = {
 						CreatedOnToolsVersion = 10.0;
@@ -220,7 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D157607C21DB34BA0020F194 /* CoreDataManager.m in Sources */,
-				D157608521DB85AC0020F194 /* LocalDataManagerInterface.m in Sources */,
+				D14351D221E08DD00077CE45 /* CoreDataManagerWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +361,7 @@
 		D157607521DB34940020F194 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -380,6 +378,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = an.LocalDataManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -387,6 +387,7 @@
 		D157607621DB34940020F194 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -403,6 +404,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = an.LocalDataManager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -410,6 +412,7 @@
 		D157607821DB34940020F194 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LocalDataManagerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -426,6 +429,7 @@
 		D157607921DB34940020F194 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LocalDataManagerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
