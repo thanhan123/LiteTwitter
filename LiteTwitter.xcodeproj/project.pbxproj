@@ -497,6 +497,7 @@
 				D13DE82521BB660000946ECA /* Resources */,
 				1E952F36453381C92A845BCD /* [CP] Embed Pods Frameworks */,
 				D157608A21DB87E50020F194 /* Embed Frameworks */,
+				F69190057B166DB8F816677A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -516,6 +517,7 @@
 				D13DE83821BB660300946ECA /* Frameworks */,
 				D13DE83921BB660300946ECA /* Resources */,
 				C34FAE804CCC89A78E15D504 /* [CP] Embed Pods Frameworks */,
+				83FF24B7A2CF18F1EE0D042C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -535,6 +537,8 @@
 				D13DE84221BB660300946ECA /* Sources */,
 				D13DE84321BB660300946ECA /* Frameworks */,
 				D13DE84421BB660300946ECA /* Resources */,
+				02CC705AA40981FAB1131C85 /* [CP] Embed Pods Frameworks */,
+				E18DA89E230BF42A94864FBC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -616,6 +620,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		02CC705AA40981FAB1131C85 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitterUITests/Pods-LiteTwitterUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		1E952F36453381C92A845BCD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -648,6 +671,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitter/Pods-LiteTwitter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83FF24B7A2CF18F1EE0D042C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitterTests/Pods-LiteTwitterTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A23657BCD19604AD3A5D9E16 /* [CP] Check Pods Manifest.lock */ = {
@@ -714,6 +756,25 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitterTests/Pods-LiteTwitterTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E18DA89E230BF42A94864FBC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitterUITests/Pods-LiteTwitterUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		EA0A9D0CA988ED13F2A62687 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -730,6 +791,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F69190057B166DB8F816677A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitter/Pods-LiteTwitter-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

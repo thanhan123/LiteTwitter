@@ -9,29 +9,43 @@
 import Foundation
 
 protocol CreatePostAction {
-    var createPostManager: CreatePostManager { get set }
     func createPost(content: String, title: String, authorId: String, handler: @escaping ((Result<Bool>) -> ()))
 }
 
 class CreatePostActionProvider: CreatePostAction {
     var createPostManager: CreatePostManager
+    var savePostManager: PostPostsLocalManager
+    var internetChecking: InternetConnectionCheckingAction
     
-    init(createPostManager: CreatePostManager) {
+    init(createPostManager: CreatePostManager,
+         savePostManager: PostPostsLocalManager = CoreDataLocalPostsManagerProvider(),
+         internetChecking: InternetConnectionCheckingAction = InternetConnectionCheckingActionProvider()) {
         self.createPostManager = createPostManager
+        self.savePostManager = savePostManager
+        self.internetChecking = internetChecking
     }
     
     func createPost(content: String, title: String, authorId: String, handler: @escaping ((Result<Bool>) -> ())) {
-        createPostManager.createPost(
-            content: content,
-            title: title,
-            authorId: authorId) { (result) in
-                switch result {
-                case .success:
-                    handler(.success(true))
-                    
-                case let .failed(error):
-                    handler(.failed(error))
+        internetChecking.startChecking(
+            reachable: { [weak self] in
+                self?.createPostManager.createPost(
+                    content: content,
+                    title: title,
+                    authorId: authorId) { (result) in
+                        switch result {
+                        case let .success(post):
+                            self?.savePostManager.postPosts([post], handler: { _ in })
+                            handler(.success(true))
+                            
+                        case let .failed(error):
+                            handler(.failed(error))
+                        }
                 }
-        }
+            },
+            unreachable: {
+                
+            }
+        )
+        
     }
 }
