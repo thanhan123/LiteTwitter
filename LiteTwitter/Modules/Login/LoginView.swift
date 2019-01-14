@@ -54,7 +54,7 @@ class LoginView: BaseView {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
         button.backgroundColor = UIColor.lightBlue
-        button.addTarget(self, action: #selector(handleConfirmButtonWasTapped), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(LoginViewActionDelegate.actionButtonWasTapped), for: .touchUpInside)
         return button
     }()
     
@@ -91,10 +91,6 @@ class LoginView: BaseView {
         stackView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 30.0).isActive = true
         stackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor).isActive = true
-    }
-    
-    @objc func handleConfirmButtonWasTapped() {
-        actionDelegate?.actionButtonWasTapped()
     }
     
     @objc func handleSegmentWasTapped() {

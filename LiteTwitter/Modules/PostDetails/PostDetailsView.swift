@@ -34,7 +34,7 @@ class PostDetailsView: BaseView {
         button.setTitle("Confirm", for: .normal)
         button.backgroundColor = UIColor.lightBlue
         button.widthAnchor.constraint(equalToConstant: button.intrinsicContentSize.width + 100.0).isActive = true
-        button.addTarget(self, action: #selector(handleConfirmButtonWasTapped), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(PostDetailsViewActionDelegate.actionButtonWasTapped), for: .touchUpInside)
         return button
     }()
     
@@ -99,20 +99,12 @@ class PostDetailsView: BaseView {
         
         deleteBarButton.target = self
         deleteBarButton.action = #selector(handleDeleteButtonWasTapped)
-        titleTextField.addTarget(self, action: #selector(handleInputFieldChanged), for: .allEditingEvents)
+        titleTextField.addTarget(nil, action: #selector(PostDetailsViewActionDelegate.handleInputFieldChanged), for: .allEditingEvents)
         contentTextView.delegate = self
     }
     
     @objc func handleDeleteButtonWasTapped() {
         actionDelegate?.deleteButtonWasTapped()
-    }
-    
-    @objc func handleConfirmButtonWasTapped() {
-        actionDelegate?.actionButtonWasTapped()
-    }
-    
-    @objc func handleInputFieldChanged() {
-        actionDelegate?.handleInputFieldChanged()
     }
     
     func updateConfirmButton(isEnabled: Bool) {
