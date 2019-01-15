@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Profile
 
 class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActionDelegate, UITableViewDelegate {
     var dataSource: TableViewDataSource<Post>?
@@ -136,15 +137,18 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
     }
     
     func handleLogoutBarButtonWasTapped() {
-        self.logoutAction.logout { [weak self] (result) in
-            switch result {
-            case .success:
-                self?.handleEvent(event: .onSuccessfullyLogout)
-                
-            case let .failed(error):
-                self?.handleEvent(event: .onReceiveError(error))
-            }
-        }
+//        self.logoutAction.logout { [weak self] (result) in
+//            switch result {
+//            case .success:
+//                self?.handleEvent(event: .onSuccessfullyLogout)
+//
+//            case let .failed(error):
+//                self?.handleEvent(event: .onReceiveError(error))
+//            }
+//        }
+        
+        let profileVC = ProfileViewController()
+        self.navigationController?.pushViewController(profileVC, animated: true)
     }
     
     func refreshControlWasTriggered() {

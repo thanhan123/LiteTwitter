@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2539B6BE21EDE408001BCBBE /* Profile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2539B6BD21EDE408001BCBBE /* Profile.framework */; };
+		2539B6BF21EDE408001BCBBE /* Profile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2539B6BD21EDE408001BCBBE /* Profile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2548D70621C3542B0055D9D2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548D70521C3542B0055D9D2 /* UIColor+Extension.swift */; };
 		2548D70821C362300055D9D2 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548D70721C362300055D9D2 /* Post.swift */; };
 		2548D70A21C365F70055D9D2 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2548D70921C365F70055D9D2 /* UITableView+Extension.swift */; };
@@ -97,6 +99,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2539B6BF21EDE408001BCBBE /* Profile.framework in Embed Frameworks */,
 				D157608921DB87E40020F194 /* LocalDataManager.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -105,6 +108,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2539B6BD21EDE408001BCBBE /* Profile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Profile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2539B6C021EDE415001BCBBE /* Profile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Profile.framework; path = "../../../Library/Developer/Xcode/DerivedData/LiteTwitter-bsraaraqlqvqavbtrwsdrewczkln/Build/Products/Debug-iphoneos/Profile.framework"; sourceTree = "<group>"; };
 		2548D70521C3542B0055D9D2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		2548D70721C362300055D9D2 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		2548D70921C365F70055D9D2 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
@@ -187,6 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2539B6BE21EDE408001BCBBE /* Profile.framework in Frameworks */,
 				7CF1D1C2AB9A3BBD4A215C84 /* Pods_LiteTwitter.framework in Frameworks */,
 				D157608821DB87E40020F194 /* LocalDataManager.framework in Frameworks */,
 			);
@@ -280,6 +286,7 @@
 		8E2B59FCC238B0C5E15DD0B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2539B6C021EDE415001BCBBE /* Profile.framework */,
 				D157608621DB87CC0020F194 /* LocalDataManager.framework */,
 				620DEA289BA280A61A1D4191 /* Pods_LiteTwitter.framework */,
 				B143E7DBDE01AED57921EE1E /* Pods_LiteTwitterTests.framework */,
@@ -291,6 +298,7 @@
 		D13DE81E21BB660000946ECA = {
 			isa = PBXGroup;
 			children = (
+				2539B6BD21EDE408001BCBBE /* Profile.framework */,
 				D13DE82921BB660000946ECA /* LiteTwitter */,
 				D13DE83E21BB660300946ECA /* LiteTwitterTests */,
 				D13DE84921BB660300946ECA /* LiteTwitterUITests */,
@@ -497,7 +505,6 @@
 				D13DE82521BB660000946ECA /* Resources */,
 				1E952F36453381C92A845BCD /* [CP] Embed Pods Frameworks */,
 				D157608A21DB87E50020F194 /* Embed Frameworks */,
-				F69190057B166DB8F816677A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -517,7 +524,6 @@
 				D13DE83821BB660300946ECA /* Frameworks */,
 				D13DE83921BB660300946ECA /* Resources */,
 				C34FAE804CCC89A78E15D504 /* [CP] Embed Pods Frameworks */,
-				83FF24B7A2CF18F1EE0D042C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -537,8 +543,6 @@
 				D13DE84221BB660300946ECA /* Sources */,
 				D13DE84321BB660300946ECA /* Frameworks */,
 				D13DE84421BB660300946ECA /* Resources */,
-				02CC705AA40981FAB1131C85 /* [CP] Embed Pods Frameworks */,
-				E18DA89E230BF42A94864FBC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -620,32 +624,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		02CC705AA40981FAB1131C85 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitterUITests/Pods-LiteTwitterUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1E952F36453381C92A845BCD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitter/Pods-LiteTwitter-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-LiteTwitter/Pods-LiteTwitter-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AloeStackView/AloeStackView.framework",
 				"${BUILT_PRODUCTS_DIR}/Apollo/Apollo.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
@@ -670,26 +655,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitter/Pods-LiteTwitter-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		83FF24B7A2CF18F1EE0D042C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitterTests/Pods-LiteTwitterTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LiteTwitter/Pods-LiteTwitter-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A23657BCD19604AD3A5D9E16 /* [CP] Check Pods Manifest.lock */ = {
@@ -736,7 +702,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitterTests/Pods-LiteTwitterTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-LiteTwitterTests/Pods-LiteTwitterTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
@@ -753,26 +719,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitterTests/Pods-LiteTwitterTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E18DA89E230BF42A94864FBC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitterUITests/Pods-LiteTwitterUITests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LiteTwitterTests/Pods-LiteTwitterTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EA0A9D0CA988ED13F2A62687 /* [CP] Check Pods Manifest.lock */ = {
@@ -791,25 +738,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F69190057B166DB8F816677A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiteTwitter/Pods-LiteTwitter-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

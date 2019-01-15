@@ -42,8 +42,14 @@ class CreatePostActionProvider: CreatePostAction {
                         }
                 }
             },
-            unreachable: {
-                
+            unreachable: { [weak self] in
+                let post = PostResponse(
+                    id: "\(Date())",
+                    title: title,
+                    content: content,
+                    authorId: authorId
+                )
+                self?.savePostManager.postPosts([post], handler: { _ in })
             }
         )
         
