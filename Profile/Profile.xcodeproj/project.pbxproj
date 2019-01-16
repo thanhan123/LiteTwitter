@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2539B6B821EDE0C2001BCBBE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2539B6B721EDE0C2001BCBBE /* ProfileViewController.swift */; };
 		2539B6C221EDEDD1001BCBBE /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2539B6C121EDEDD1001BCBBE /* ProfileViewModel.swift */; };
+		25E732B121EED2EA00ACCD8E /* ProfileCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E732B021EED2EA00ACCD8E /* ProfileCreator.swift */; };
 		DA85CF9C41B089FF608555CB /* Pods_Profile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E778BF5933A12683B00D764 /* Pods_Profile.framework */; };
 /* End PBXBuildFile section */
 
@@ -19,6 +20,7 @@
 		2563CAC921D9B7BA00EC0A60 /* Profile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Profile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2563CACD21D9B7BA00EC0A60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2563DF0B21DA1E5C00EC0A60 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		25E732B021EED2EA00ACCD8E /* ProfileCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreator.swift; sourceTree = "<group>"; };
 		35B2D159B11C47486404F0E6 /* Pods-Profile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Profile.release.xcconfig"; path = "Target Support Files/Pods-Profile/Pods-Profile.release.xcconfig"; sourceTree = "<group>"; };
 		E0520C2A05B66DC917D476B1 /* Pods-Profile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Profile.debug.xcconfig"; path = "Target Support Files/Pods-Profile/Pods-Profile.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,6 +61,7 @@
 				2563CACD21D9B7BA00EC0A60 /* Info.plist */,
 				2539B6B721EDE0C2001BCBBE /* ProfileViewController.swift */,
 				2539B6C121EDEDD1001BCBBE /* ProfileViewModel.swift */,
+				25E732B021EED2EA00ACCD8E /* ProfileCreator.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			files = (
 				2539B6C221EDEDD1001BCBBE /* ProfileViewModel.swift in Sources */,
 				2539B6B821EDE0C2001BCBBE /* ProfileViewController.swift in Sources */,
+				25E732B121EED2EA00ACCD8E /* ProfileCreator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

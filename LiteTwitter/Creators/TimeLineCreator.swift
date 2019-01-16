@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Profile
 
 protocol TimeLineCreator {
     func createTimeLineScreen(with window: UIWindow?) -> TimeLineViewController
@@ -27,7 +28,8 @@ class TimeLineCreatorProvider: TimeLineCreator {
             postDetailsCreator: PostDetailsCreatorProvider(),
             loginCreator: LoginCreatorProvider(),
             showLoaderAction: MBProgressHUDShowLoaderAction(),
-            showAlertAction: ShowAlertActionProvider()
+            showAlertAction: ShowAlertActionProvider(),
+            profileCreator: ProfileCreatorProvider()
         )
         
         return vc

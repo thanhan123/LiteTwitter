@@ -8,9 +8,18 @@
 
 import UIKit
 
-public class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController {
     
-    public init() {
+    private let logoutAction: LogoutAction
+    
+    var logoutBarButton: UIBarButtonItem = {
+        let barButton = UIBarButtonItem(title: "Logout", style: .plain, target: nil, action: nil)
+        return barButton
+    }()
+    
+    init(logoutAction: @escaping LogoutAction) {
+        self.logoutAction = logoutAction
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -23,5 +32,13 @@ public class ProfileViewController: UIViewController {
         
         title = "Profile view"
         view.backgroundColor = UIColor.red
+        
+        navigationItem.rightBarButtonItem = logoutBarButton
+        logoutBarButton.target = self
+        logoutBarButton.action = #selector(logoutButtonWasTapped)
+    }
+    
+    @objc func logoutButtonWasTapped() {
+        logoutAction()
     }
 }

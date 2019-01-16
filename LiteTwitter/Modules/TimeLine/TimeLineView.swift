@@ -10,7 +10,7 @@ import UIKit
 
 protocol TimeLineViewActionDelegate: class {
     func handleAddBarButtonWasTapped()
-    func handleLogoutBarButtonWasTapped()
+    func handleProfileBarButtonWasTapped()
     func refreshControlWasTriggered()
 }
 
@@ -33,8 +33,8 @@ class TimeLineView: BaseView {
         return barButton
     }()
     
-    var logoutBarButton: UIBarButtonItem = {
-        let barButton = UIBarButtonItem(title: "Logout", style: .plain, target: nil, action: nil)
+    var profileBarButton: UIBarButtonItem = {
+        let barButton = UIBarButtonItem(title: "Profile", style: .plain, target: nil, action: nil)
         return barButton
     }()
     
@@ -46,8 +46,8 @@ class TimeLineView: BaseView {
         addBarButton.target = self
         addBarButton.action = #selector(addButtonWasTapped)
         
-        logoutBarButton.target = self
-        logoutBarButton.action = #selector(logoutButtonWasTapped)
+        profileBarButton.target = self
+        profileBarButton.action = #selector(profileButtonWasTapped)
         
         addSubview(tableView)
         
@@ -65,8 +65,8 @@ class TimeLineView: BaseView {
         actionDelegate?.handleAddBarButtonWasTapped()
     }
     
-    @objc func logoutButtonWasTapped() {
-        actionDelegate?.handleLogoutBarButtonWasTapped()
+    @objc func profileButtonWasTapped() {
+        actionDelegate?.handleProfileBarButtonWasTapped()
     }
     
     @objc func refreshControlWasTriggered() {

@@ -10,9 +10,9 @@ import UIKit
 import Profile
 
 class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActionDelegate, UITableViewDelegate {
-    var dataSource: TableViewDataSource<Post>?
-    var heights = [String: CGFloat]()
-    lazy var receivePostsHandler: (Result<[Post]>) -> () = { [weak self] (result) in
+    private var dataSource: TableViewDataSource<Post>?
+    private var heights = [String: CGFloat]()
+    private lazy var receivePostsHandler: (Result<[Post]>) -> () = { [weak self] (result) in
         switch result {
         case let .success(posts):
             self?.handleEvent(event: .onReceivePosts(posts))
@@ -22,13 +22,14 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         }
     }
     
-    let logicController: TimeLineLogicController
-    let logoutAction: LogoutAction
-    let showLoaderAction: ShowLoaderAction
-    let showAlertAction: ShowAlertAction
-    let router: Router
-    let postDetailsCreator: PostDetailsCreator
-    let loginCreator: LoginCreator
+    private let logicController: TimeLineLogicController
+    private let logoutAction: LogoutAction
+    private let showLoaderAction: ShowLoaderAction
+    private let showAlertAction: ShowAlertAction
+    private let router: Router
+    private let postDetailsCreator: PostDetailsCreator
+    private let loginCreator: LoginCreator
+    private let profileCreator: ProfileCreator
     
     init(logicController: TimeLineLogicController,
          logoutAction: LogoutAction,
@@ -36,7 +37,8 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
          postDetailsCreator: PostDetailsCreator,
          loginCreator: LoginCreator,
          showLoaderAction: ShowLoaderAction,
-         showAlertAction: ShowAlertAction) {
+         showAlertAction: ShowAlertAction,
+         profileCreator: ProfileCreator) {
         self.logicController = logicController
         self.router = router
         self.postDetailsCreator = postDetailsCreator
@@ -44,6 +46,7 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         self.logoutAction = logoutAction
         self.showLoaderAction = showLoaderAction
         self.showAlertAction = showAlertAction
+        self.profileCreator = profileCreator
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -115,13 +118,26 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         super.viewDidLoad()
         
         title = "Time Line"
-        navigationItem.leftBarButtonItem = currentView.logoutBarButton
+        navigationItem.leftBarButtonItem = currentView.profileBarButton
         navigationItem.rightBarButtonItem = currentView.addBarButton
         currentView.actionDelegate = self
         currentView.tableView.delegate = self
         
         showLoaderAction.show(in: currentView)
         logicController.loadPosts(handler: receivePostsHandler)
+    }
+    
+    // MARK: Private
+    private func logout() {
+        logoutAction.logout { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.handleEvent(event: .onSuccessfullyLogout)
+                
+            case let .failed(error):
+                self?.handleEvent(event: .onReceiveError(error))
+            }
+        }
     }
     
     // MARK: TimeLineViewActionDelegate
@@ -136,19 +152,12 @@ class TimeLineViewController: BaseViewController<TimeLineView>, TimeLineViewActi
         }
     }
     
-    func handleLogoutBarButtonWasTapped() {
-//        self.logoutAction.logout { [weak self] (result) in
-//            switch result {
-//            case .success:
-//                self?.handleEvent(event: .onSuccessfullyLogout)
-//
-//            case let .failed(error):
-//                self?.handleEvent(event: .onReceiveError(error))
-//            }
-//        }
-        
-        let profileVC = ProfileViewController()
-        self.navigationController?.pushViewController(profileVC, animated: true)
+    func handleProfileBarButtonWasTapped() {
+        let profileVC = profileCreator.createTimeLineScreen(
+            with: router.window,
+            logoutAction: logout
+        )
+        router.push(profileVC, from: self, animated: true)
     }
     
     func refreshControlWasTriggered() {
